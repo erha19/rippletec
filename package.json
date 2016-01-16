@@ -1,0 +1,29 @@
+{
+  "name": "rippletec",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "zepto": "^1.0.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.10.0",
+    "gulp": "*",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-changed": "*",
+    "gulp-concat": "*",
+    "gulp-cssnano": "*",
+    "gulp-filter": "^3.0.1",
+    "gulp-htmlmin": "*",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-main-bower-files": "^1.3.1",
+    "gulp-sass": "^2.1.1",
+    "gulp-uglify": "*"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "simplefatty",
+  "license": "ISC"
+}

@@ -1,0 +1,28 @@
+$font:"Microsoft YaHei", "SimHei", "Arial Unicode MS";
+$defaultColor:#333;
+body{
+	margin:0;
+	padding:0;
+	color:$defaultColor;
+	font-family:$font;
+}
+ul,li{
+	margin:0;
+	padding:0;
+	list-style:none;
+	display:block;
+}
+h1,p{
+	display:block;
+	margin:0;
+	padding:0;
+}
+a{
+	display: block;
+  	text-decoration: none;
+
+	&:focus,&:hover,&:active,&:link{
+		color:$defaultColor;
+  		text-decoration: none;
+   }
+}

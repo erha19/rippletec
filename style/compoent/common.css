@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  padding: 0;
+  color: #333;
+  font-family: "Microsoft YaHei", "SimHei", "Arial Unicode MS"; }
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: block; }
+
+a {
+  display: block;
+  text-decoration: none; }
+  a:focus, a:hover, a:active {
+    color: #333;
+    text-decoration: none; }

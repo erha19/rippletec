@@ -1,0 +1,337 @@
+/*---动态---*/
+.rpt-news{
+	height:240px;
+	width:100%;
+	margin:50px auto;
+}
+.rpt-news-left,.rpt-news-right{
+	width:485px;
+	height:240px;
+	float:left;
+}
+.rpt-news-left{
+	margin-right:15px;
+	border:1px solid rgba(0,0,0,.1);
+	position:relative;
+	.rpt-news-pic{
+		position:absolute;
+		width:485px;
+		height:240px;
+		top: 0;
+		left: 0;
+		background:#fff;
+		z-index:10;
+
+	}
+}
+.rpt-news-right{
+	.rpt-news-title{
+		width: 100%;
+		height: 30px;
+		border-bottom:1px solid #ddd;
+		margin-left: 15px;
+		span{
+			float: right;
+			font-size: 14px;
+			color:#ddd;
+			display: block;
+			height: 30px;
+			line-height: 30px;
+		}
+		h1{
+			height: 29px;
+			float: left;
+			width: 73px;
+			border-bottom:1px solid #ddd;
+			line-height: 30px;
+			font-size: 18px;
+			color:#6fde2c;
+			font-weight: normal;
+			position:relative;
+			i{
+				width: 50px;
+			    height: 50px;
+			    position: absolute;
+			    top: -25px;
+			    left: -60px;
+			    border: 3px solid #6fde2c;
+			    z-index: 0;
+			}
+		}
+
+	}
+		p{
+			margin:0;
+			padding:0;
+		}
+		.text-title{
+			display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+			font-size:14px;
+			max-height: 20px;
+			line-height: 20px;
+			color:#333;
+			text-align: left;
+			margin:10px 0;
+			margin-left: 15px;
+		}
+		.text-container{
+			display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+			max-height: 40px;
+			margin-left: 15px;
+			font-size:12px;
+			color:rgba(0,0,0,.5);
+			text-align: left;
+			line-height: 20px;
+		}
+}
+/*---介绍---*/
+.rippletec-intro{
+	margin:20px 0;
+	margin-bottom:0;
+	width:100%;
+	height:300px;
+	background:url('../images/rippletec-intro.png') no-repeat center center;
+	background-size:cover;
+}
+.rippletec-intro-icon{
+	position:absolute;
+	display:block;
+	width:50px;
+	height:50px;
+	top: -20px;
+    left: 475px;
+	background:url('../images/rippletec-icon.png') no-repeat center center;
+	background-position:-376px -15px;
+	z-index:999;
+}
+.rpt-dark-body{
+	width:100%;
+	position:relative;
+	z-index:1;
+	height:440px;
+	background:#fafafa;
+}
+.rpt-panel{
+	position:absolute;
+	top:280px;
+	width:100%;
+	height:50px;
+	.rpt-panel-left{
+		position:absolute;
+		top:0;
+		left: 0;
+		width: 250px;
+		height: 60px;
+		background:#ee4533;
+		z-index: 15;
+		h1{
+			width: 100%;
+			letter-spacing:4px;
+			height: 30px;
+			margin-top: 30px;
+			color: #fff;
+			font-weight: normal;
+			font-size: 18px;
+			text-align:right;
+			span{
+				position:absolute;
+				color:#ee4533;
+				display: block;
+				text-align: left;
+				width: 100px;
+				height: 30px;
+				left: 254px;
+				top: 30px;
+			}
+		}
+	}
+	.rpt-panel-right{
+		position:absolute;
+		width: 100%;
+		top:0;
+		left: 0;
+		height: 60px;
+		background:#fafafa;
+		z-index: 10;
+	}
+}
+.block-1-4{
+	width:25%;
+	height:250px;
+	float:left;
+	position:relative;
+	span{
+		display: block;
+		height: 30px;
+		line-height: 30px;
+		font-size: 16px;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+}
+.icon{
+	margin:50px;
+	width:150px;
+	height:150px;
+	margin-bottom: 0px;
+	background:url('../images/rippletec-icon.png') no-repeat center center;
+}
+.icon-mini{
+	width: 65px;
+    height: 60px;
+	background:url('../images/rippletec-icon.png') no-repeat center center;
+}
+.rpt-branch{
+	width:200px;
+	height:200px;
+	border:1px solid rgba(0,0,0,.1);
+	position:absolute;
+	top:-60px;
+	left:25px;
+	z-index:999;
+	background:#fff;
+	i{
+		display: block;
+		margin:25px auto;
+	}
+	h1{
+		text-align: center;
+		font-weight: normal;
+		font-size:20px;
+		line-height: 36px;
+		text-align: center;
+		color:rgba(0,0,0,.8);
+
+	}
+	p{
+		text-align: center;
+		line-height: 36px;
+		font-size:16px;
+		color:rgba(0,0,0,.5);
+	}
+}
+.icon-1{
+	background-position:-27px -75px;
+}
+.icon-2{
+	background-position:-227px -75px;
+}
+.icon-3{
+	background-position:-427px -75px;
+}
+.icon-4{
+	background-position:-627px -75px;
+}
+.icon-5{
+	background-position:-69px -287px;
+}
+.icon-6{
+	background-position:-269px -287px;
+}
+.icon-7{
+	background-position:-469px -287px;
+}
+.icon-8{
+	background-position:-669px -287px;
+}
+/*-----活动------*/
+.rpt-activity{
+	margin-top:200px;
+}
+.pic-br{
+	width:1000px;
+	height:60px;
+	margin:0 auto;
+	overflow:hidden;
+}
+.pic-br-left{
+	width:100px;
+	height:60px;
+	float:left;
+	background:url('../images/rippletec-icon.png') no-repeat center left;
+	background-position:-544px -12px;
+}
+.pic-br-right{
+	width:100px;
+	height:60px;
+	float:right;
+	background:url('../images/rippletec-icon.png') no-repeat center right;
+	background-position:-544px -12px;
+}
+.rpt-activity-pic{
+	margin:20px 0;
+	img{
+		width: 1000px;
+		height: auto;
+	}
+}
+/*---合作客户----*/
+.rpt-partner{
+	width:100%;
+	height:250px;
+	margin-top:20px;
+	position:relative;
+	.rpt-partner-left{
+		float: left;
+		width: 680px;
+		height: 180px;
+		border:1px solid #ddd;
+	}
+	.rpt-panel-partner-right{
+		position:absolute;
+		top:0;
+		right: 0;
+		width: 250px;
+		height: 60px;
+		background:#33c5ee;
+		z-index: 15;
+		h1{
+			width: 100%;
+			letter-spacing:4px;
+			height: 30px;
+			margin-top: 30px;
+			color: #fff;
+			font-weight: normal;
+			font-size: 18px;
+			text-align:left;
+			span{
+				position:absolute;
+				color:#33c5ee;
+				display: block;
+				text-align: right;
+				width: 100px;
+				height: 30px;
+				right: 254px;
+				top: 30px;
+			}
+		}
+	}
+}
+.rpt-location{
+	img{
+		width: 1000px;
+		height: auto;
+	}
+}
+.rpt-conchat{
+	height:120px;
+	width:800px;
+	margin:15px auto;
+	margin-bottom:30px;
+	background:url('../images/rippletec-icon.png') no-repeat;
+	background-position:-46px -405px;
+}
+.rpt-footer{
+	width:100%;
+	height:40px;
+	line-height:40px;
+	margin:15px 0;
+	border-top:1px solid #ddd;
+	font-size:12px;
+	text-align:center;
+	color:rgba(0,0,0,.5);
+	p{
+		margin:0;
+		padding:0;
+	}
+}

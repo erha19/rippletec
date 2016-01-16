@@ -1,0 +1,47 @@
+$activedColor:#00a4ff;
+.rpt-header{
+	height:50px;
+	width:100%;
+	padding:5px 0;
+	background-color:#FFF;
+}
+.rpt-logo{
+	float:left;
+	height:50px;
+	width:225px;
+	background:url('../images/rippletec-icon.png') no-repeat;
+	background-position:-46px -12px;
+}
+.rpt-wrap{
+	width:1000px;
+	margin:0 auto;
+	position: relative;
+}
+.rpt-menu{
+	height:50px;
+	float:right;
+	line-height:50px;
+	text-align:center;
+	li{
+		width: 50px;
+		font-size: 14px;
+		float: left;
+		a{
+			color: rgba(0,0,0,.8);
+			&:hover{
+				color:$activedColor;
+			}
+		}
+	}
+	span{
+		float: left;
+		display: block;
+		width: 1px;
+		height: 10px;
+		margin: 20px 5px;
+		background:#ddd;
+	}
+	.actived{
+		color: $activedColor;
+	}
+}
