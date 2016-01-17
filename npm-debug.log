@@ -1,0 +1,48 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'search',
+1 verbose cli   'TweenMax' ]
+2 info using npm@3.5.3
+3 info using node@v5.1.0
+4 silly mapToRegistry name -/all
+5 silly mapToRegistry using default registry
+6 silly mapToRegistry registry http://registry.npm.taobao.org/
+7 silly mapToRegistry uri http://registry.npm.taobao.org/-/all
+8 info updateIndex C:\Users\simpl_000\AppData\Roaming\npm-cache\registry.npm.taobao.org\-\all\.cache.json
+9 warn Building the local index for the first time, please be patient
+10 silly update-index fetching http://registry.npm.taobao.org/-/all
+11 verbose request uri http://registry.npm.taobao.org/-/all
+12 verbose request no auth needed
+13 info attempt registry request try #1 at 17:05:39
+14 verbose request id 592d1a5f9c135336
+15 http request GET http://registry.npm.taobao.org/-/all
+16 http 200 http://registry.npm.taobao.org/-/all
+17 verbose headers { date: 'Sun, 17 Jan 2016 09:05:42 GMT',
+17 verbose headers   'content-type': 'application/json; charset=utf-8',
+17 verbose headers   'content-length': '5005266',
+17 verbose headers   connection: 'keep-alive',
+17 verbose headers   etag: '"4c5fd2-D0ooxqCySiSVlI6oa4kdZg"',
+17 verbose headers   'x-readtime': '2091' }
+18 verbose stack Error: true true: -/all
+18 verbose stack     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:264:12)
+18 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:252:14)
+18 verbose stack     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:172:14)
+18 verbose stack     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:198:22)
+18 verbose stack     at emitTwo (events.js:87:13)
+18 verbose stack     at Request.emit (events.js:172:7)
+18 verbose stack     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1035:10)
+18 verbose stack     at emitOne (events.js:82:20)
+18 verbose stack     at Request.emit (events.js:169:7)
+18 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:962:12)
+19 verbose statusCode 200
+20 verbose cwd E:\Program Files\EasyPHP-Devserver-16.1\eds-www\www\src
+21 error Windows_NT 10.0.10240
+22 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "search" "TweenMax"
+23 error node v5.1.0
+24 error npm  v3.5.3
+25 error code E200
+26 error true true: -/all
+27 error If you need help, you may report this error at:
+27 error     <https://github.com/npm/npm/issues>
+28 verbose exit [ 1, true ]

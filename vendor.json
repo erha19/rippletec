@@ -1,9 +1,18 @@
 {
-    "bootstrap": {
-        "main": [
-            "./dist/js/bootstrap.js",
-            "./dist/css/*.min.*",
-            "./dist/fonts/*.*"
-            ]
-        }
+	"pogo-slider": {
+		"main": [
+			"./jquery.pogo-slider.min.js",
+			"./src/pogo-slider.css"
+		]
+	},
+	"TweenMax": {
+		"main": [
+			"./TweenMax.min.js"
+		]
+	},
+	"jquery":{
+		"main":[
+			"./dist/jquery.min.js"
+		]
+	}
 }

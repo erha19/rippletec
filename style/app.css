@@ -3,7 +3,8 @@ body {
   margin: 0;
   padding: 0;
   color: #333;
-  font-family: "Microsoft YaHei", "SimHei", "Arial Unicode MS"; }
+  font-family: "Microsoft YaHei", "SimHei", "Arial Unicode MS";
+  overflow-x: hidden; }
 
 ul, li {
   margin: 0;
@@ -11,10 +12,13 @@ ul, li {
   list-style: none;
   display: block; }
 
-h1, p {
+h1, p, span, i, em {
   display: block;
   margin: 0;
   padding: 0; }
+
+i, em {
+  font-style: normal; }
 
 a {
   display: block;
@@ -22,6 +26,18 @@ a {
   a:focus, a:hover, a:active, a:link {
     color: #333;
     text-decoration: none; }
+
+.clearfix {
+  *zoom: 1; }
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: ""; }
+
+.clearfix:after {
+  clear: both; }
 
 .rpt-header {
   height: 50px;
@@ -39,7 +55,8 @@ a {
 .rpt-wrap {
   width: 1000px;
   margin: 0 auto;
-  position: relative; }
+  position: relative;
+  z-index: 10; }
 
 .rpt-menu {
   height: 50px;
@@ -49,11 +66,19 @@ a {
   .rpt-menu li {
     width: 50px;
     font-size: 14px;
-    float: left; }
+    float: left;
+    position: relative;
+    z-index: 99; }
     .rpt-menu li a {
-      color: rgba(0, 0, 0, 0.8); }
+      color: rgba(0, 0, 0, 0.8);
+      transition: color .3s ease;
+      cursor: pointer; }
       .rpt-menu li a:hover {
         color: #00a4ff; }
+    .rpt-menu li:hover .s-menu {
+      z-index: 50;
+      opacity: 1;
+      visibility: visible; }
   .rpt-menu span {
     float: left;
     display: block;
@@ -64,22 +89,66 @@ a {
   .rpt-menu .actived {
     color: #00a4ff; }
 
+.s-menu {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1;
+  transition: all .2s ease;
+  top: 50px;
+  left: -15px;
+  width: 80px;
+  height: 40px;
+  font-size: 14px;
+  text-align: center;
+  background: #fff; }
+  .s-menu ul, .s-menu li, .s-menu i {
+    margin: 0;
+    padding: 0;
+    display: block; }
+  .s-menu li {
+    width: 80px;
+    line-height: 30px;
+    padding: 5px 0;
+    text-align: center; }
+
+/**slidr**/
+.rpt-activity-pic > .pogoSlider-nav {
+  left: 915px;
+  transform: translateX(0); }
+
+.pogoSlider-nav-btn {
+  width: 12px;
+  height: 12px; }
+
 .rpt-banner {
   position: relative;
-  height: 400px; }
+  height: 400px;
+  padding-bottom: 0 !important; }
+  .rpt-banner div[data-slidr] {
+    width: 100%; }
   .rpt-banner .rpt-banner-bg, .rpt-banner .rpt-banner-front {
-    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 400px; }
 
 .rpt-banner-bg {
+  opacity: 1;
+  visibility: visible;
+  transition: all 1s ease-in;
+  position: absolute;
   background: url("../images/banner_end.png") no-repeat center center;
   background-size: cover;
   z-index: 1; }
 
 .rpt-banner-front {
+  opacity: 1;
+  visibility: visible;
+  transition: all 1s ease-in;
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
   background: url("../images/banner_front.png") no-repeat center center;
   background-size: cover;
   z-index: 2; }
@@ -105,8 +174,32 @@ a {
     height: 240px;
     top: 0;
     left: 0;
-    background: #fff;
+    background-color: #fff;
     z-index: 10; }
+    .rpt-news-left .rpt-news-pic img {
+      margin: 0;
+      padding: 0;
+      display: block;
+      width: 485px;
+      height: auto;
+      overflow: hidden;
+      position: absolute;
+      z-index: 9;
+      top: 0;
+      left: 0;
+      visibility: hidden;
+      opacity: 0;
+      transition: all .3s ease; }
+    .rpt-news-left .rpt-news-pic .showPic {
+      visibility: visible;
+      opacity: 1; }
+    .rpt-news-left .rpt-news-pic .actived {
+      visibility: visible;
+      opacity: 1; }
+
+.rpt-news-right .rpt-news-summary {
+  width: 100%;
+  height: 200px; }
 
 .rpt-news-right .rpt-news-title {
   width: 100%;
@@ -119,7 +212,10 @@ a {
     color: #ddd;
     display: block;
     height: 30px;
-    line-height: 30px; }
+    line-height: 30px;
+    cursor: pointer; }
+    .rpt-news-right .rpt-news-title span:hover {
+      text-decoration: underline; }
   .rpt-news-right .rpt-news-title h1 {
     height: 29px;
     float: left;
@@ -143,6 +239,16 @@ a {
   margin: 0;
   padding: 0; }
 
+.rpt-news-right .actived .text-container {
+  height: 40px; }
+
+.rpt-news-right .rpt-news-item {
+  overflow: hidden;
+  opacity: 1;
+  visibility: visible;
+  transition: all 1s ease-in;
+  cursor: pointer; }
+
 .rpt-news-right .text-title {
   display: block;
   white-space: nowrap;
@@ -153,20 +259,26 @@ a {
   line-height: 20px;
   color: #333;
   text-align: left;
-  margin: 10px 0;
-  margin-left: 15px; }
+  padding: 10px 0;
+  padding-left: 15px;
+  cursor: pointer; }
 
 .rpt-news-right .text-container {
-  display: block;
-  white-space: nowrap;
+  transition: height .3s ease;
+  height: 0;
   overflow: hidden;
-  text-overflow: ellipsis;
   max-height: 40px;
-  margin-left: 15px;
+  word-wrap: break-word;
+  overflow: hidden;
+  width: 470px;
+  padding-left: 15px;
   font-size: 12px;
   color: rgba(0, 0, 0, 0.5);
   text-align: left;
   line-height: 20px; }
+
+.rpt-news-right .showItem {
+  height: 40px; }
 
 /*---介绍---*/
 .rippletec-intro {
@@ -174,7 +286,7 @@ a {
   margin-bottom: 0;
   width: 100%;
   height: 300px;
-  background: url("../images/rippletec-intro.png") no-repeat center center;
+  background: url("../images/rippletec-intro.jpg") no-repeat center center;
   background-size: cover; }
 
 .rippletec-intro-icon {
@@ -193,7 +305,7 @@ a {
   position: relative;
   z-index: 1;
   height: 440px;
-  background: #fafafa; }
+  background: rgba(210, 209, 209, 0.11); }
 
 .rpt-panel {
   position: absolute;
@@ -216,7 +328,8 @@ a {
       color: #fff;
       font-weight: normal;
       font-size: 18px;
-      text-align: right; }
+      text-align: right;
+      text-indent: 4px; }
       .rpt-panel .rpt-panel-left h1 span {
         position: absolute;
         color: #ee4533;
@@ -224,7 +337,7 @@ a {
         text-align: left;
         width: 100px;
         height: 30px;
-        left: 254px;
+        left: 250px;
         top: 30px; }
   .rpt-panel .rpt-panel-right {
     position: absolute;
@@ -232,7 +345,7 @@ a {
     top: 0;
     left: 0;
     height: 60px;
-    background: #fafafa;
+    background: transparent;
     z-index: 10; }
 
 .block-1-4 {
@@ -263,7 +376,7 @@ a {
 .rpt-branch {
   width: 200px;
   height: 200px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(68, 68, 68, 0.1);
   position: absolute;
   top: -60px;
   left: 25px;
@@ -334,22 +447,50 @@ a {
   background-position: -544px -12px; }
 
 .rpt-activity-pic {
-  margin: 20px 0; }
+  position: relative;
+  overflow: hidden;
+  height: 368px;
+  margin: 20px auto;
+  padding-bottom: 0 !important; }
   .rpt-activity-pic img {
     width: 1000px;
+    position: absolute;
+    left: 0;
+    top: 0;
     height: auto; }
 
 /*---合作客户----*/
 .rpt-partner {
   width: 100%;
-  height: 250px;
-  margin-top: 20px;
+  height: 302px;
+  margin: 20px auto;
+  margin-bottom: 100px;
   position: relative; }
   .rpt-partner .rpt-partner-left {
     float: left;
-    width: 680px;
-    height: 180px;
+    width: 800px;
+    height: 302px;
     border: 1px solid #ddd; }
+    .rpt-partner .rpt-partner-left dl, .rpt-partner .rpt-partner-left dd {
+      display: block;
+      margin: 0;
+      padding: 0; }
+    .rpt-partner .rpt-partner-left dl {
+      width: 800px;
+      height: 99px;
+      background: #fff;
+      border-bottom: 1px solid #ddd; }
+      .rpt-partner .rpt-partner-left dl:last-child {
+        height: 100px;
+        border-bottom-width: 0px; }
+    .rpt-partner .rpt-partner-left dd {
+      width: 199px;
+      height: 100px;
+      float: left;
+      border-right: 1px solid #ddd; }
+      .rpt-partner .rpt-partner-left dd:last-child {
+        width: 200px;
+        border-right-width: 0px; }
   .rpt-partner .rpt-panel-partner-right {
     position: absolute;
     top: 0;
@@ -383,12 +524,12 @@ a {
 
 .rpt-conchat {
   height: 120px;
-  width: 800px;
-  margin: 15px auto;
-  margin-bottom: 30px;
+  width: 663px;
+  margin: 40px auto;
   background: url("../images/rippletec-icon.png") no-repeat;
   background-position: -46px -405px; }
 
+/*------页脚-----*/
 .rpt-footer {
   width: 100%;
   height: 40px;
@@ -397,7 +538,224 @@ a {
   border-top: 1px solid #ddd;
   font-size: 12px;
   text-align: center;
+  position: relative;
+  z-index: 10;
   color: rgba(0, 0, 0, 0.5); }
   .rpt-footer p {
     margin: 0;
     padding: 0; }
+
+/*------背景-----*/
+.bg-canvas {
+  width: 100%;
+  position: relative; }
+
+#bg-canvas {
+  width: 100%;
+  height: 2192px;
+  background: #fff;
+  position: absolute;
+  z-index: 1; }
+
+.page-transform-mask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999; }
+
+/*---最新动态--*/
+.rpt-news-top-header {
+  width: 100%;
+  height: 170px;
+  position: absolute;
+  z-index: 1;
+  background: url("../images/rippletec-new-header-bg.png") repeat-x center center;
+  border-top: 1px solid rgba(0, 0, 0, 0.1); }
+
+.rpt-news-container {
+  position: relative;
+  margin-top: 100px; }
+
+.rpt-news-container-title {
+  width: 1000px;
+  height: 80px; }
+  .rpt-news-container-title h1, .rpt-news-container-title dl, .rpt-news-container-title dd {
+    display: block;
+    margin: 0;
+    padding: 0; }
+  .rpt-news-container-title h1 {
+    float: left;
+    width: 200px;
+    margin-top: 20px;
+    height: 90px;
+    font-size: 28px;
+    font-weight: normal;
+    line-height: 40px;
+    text-align: left;
+    letter-spacing: 4px;
+    position: relative; }
+    .rpt-news-container-title h1 div {
+      background: url("../images/rippletec-news-number.png") no-repeat left center;
+      background-position: -67px 10px;
+      position: absolute;
+      width: 251px;
+      height: 165px;
+      bottom: 0;
+      left: 0; }
+  .rpt-news-container-title dl {
+    float: right;
+    margin-top: 20px; }
+    .rpt-news-container-title dl dd {
+      float: left;
+      padding: 5px 25px;
+      border-radius: 20px;
+      font-size: 16px;
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      margin: 0px 10px;
+      color: rgba(0, 0, 0, 0.4);
+      cursor: pointer; }
+  .rpt-news-container-title .actived {
+    background: #70de2d;
+    color: #fff;
+    border-color: #70de2d; }
+
+.rpt-news-list {
+  width: 100%;
+  overflow: hidden;
+  font-size: 14px;
+  color: #333;
+  line-height: 30px; }
+  .rpt-news-list li {
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    padding-top: 20px;
+    position: relative;
+    padding-bottom: 10px; }
+    .rpt-news-list li:nth-child(1) em {
+      background-position: 0 0; }
+    .rpt-news-list li:nth-child(2) em {
+      background-position: 0 -50px; }
+    .rpt-news-list li:nth-child(3) em {
+      background-position: 0 -100px; }
+    .rpt-news-list li:nth-child(4) em {
+      background-position: 0 -152px; }
+    .rpt-news-list li:nth-child(5) em {
+      background-position: 0 -203px; }
+    .rpt-news-list li:nth-child(6) em {
+      background-position: 0 -254px; }
+    .rpt-news-list li:nth-child(7) em {
+      background-position: 0 -305px; }
+    .rpt-news-list li:nth-child(8) em {
+      background-position: 0 -356px; }
+    .rpt-news-list li:nth-child(9) em {
+      background-position: 0 -407px; }
+    .rpt-news-list li:nth-child(10) em {
+      background-position: 0 -458px; }
+    .rpt-news-list li em {
+      width: 65px;
+      height: 50px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      background: url("../images/rippletec-news-number.png") no-repeat left center; }
+  .rpt-news-list p, .rpt-news-list span, .rpt-news-list i {
+    float: left;
+    display: block; }
+  .rpt-news-list span {
+    margin-left: 20px;
+    color: rgba(0, 0, 0, 0.5); }
+  .rpt-news-list i {
+    width: 50px;
+    text-align: center;
+    line-height: 24px;
+    margin: 3px auto;
+    border-radius: 15px;
+    background: #f2f2f2;
+    color: rgba(0, 0, 0, 0.4); }
+  .rpt-news-list p {
+    margin-left: 50px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 800px;
+    height: 30px;
+    text-indent: 20px;
+    font-size: 18px; }
+
+/*----动态详情----*/
+.rpt-back-btn {
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  float: float;
+  text-align: center;
+  background: #FFF;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer; }
+
+.rpt-new-detail {
+  margin-top: 10px;
+  padding: 20px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.1); }
+  .rpt-new-detail h1 {
+    width: 100%;
+    font-size: 18px;
+    margin: 5px 0;
+    line-height: 30px;
+    text-indent: 5px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  .rpt-new-detail p {
+    width: 100%;
+    margin-top: 5px;
+    height: 30px;
+    line-height: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+    .rpt-new-detail p span, .rpt-new-detail p i {
+      float: left; }
+    .rpt-new-detail p span {
+      width: 50px;
+      text-align: center;
+      line-height: 24px;
+      margin: 3px auto;
+      border-radius: 15px;
+      background: #f2f2f2;
+      color: rgba(0, 0, 0, 0.4); }
+    .rpt-new-detail p i {
+      margin-left: 20px;
+      color: rgba(0, 0, 0, 0.5); }
+
+.rpt-new-detail-container {
+  min-height: 300px; }
+  .rpt-new-detail-container h1, .rpt-new-detail-container p, .rpt-new-detail-container div {
+    transition: all .2s ease;
+    visibility: visible;
+    opacity: 1; }
+
+.loadding {
+  width: 100%;
+  position: relative;
+  z-index: 999;
+  background: url("../images/rippletec-loadding.gif") no-repeat center center #FFF; }
+  .loadding h1, .loadding p, .loadding div {
+    opacity: 0;
+    visibility: hidden; }
+  .loadding .rpt-banner-bg, .loadding .rpt-banner-front {
+    opacity: 0;
+    visibility: hidden; }
+  .loadding .rpt-news-item {
+    opacity: 0;
+    visibility: hidden; }
+  .loadding .rpt-news-pic img {
+    opacity: 0;
+    visibility: hidden; }

@@ -3,147 +3,202 @@
 <head>
 	<meta charset="UTF-8">
 	<title>波纹聚联-官方网站</title>
-	<link rel="stylesheet" href="style/app.css">
-</head>
+	<link rel="stylesheet" href="vendor/vendor.css"></head>
+	<link rel="stylesheet" href="style/app.css"></head>
+
 <body>
 	<div class="rpt-header">
-	<div class="rpt-wrap">
-		<a href="" class="rpt-logo"></a>
-		<ul class="rpt-menu">
-			<li><a href="" class="actived">首页</a></li>
-			<span></span>
-			<li><a href="">服务</a></li>
-			<span></span>
-			<li><a href="">动态</a></li>
-		</ul>	
+		<div class="rpt-wrap">
+			<a href="" class="rpt-logo"></a>
+			<ul class="rpt-menu">
+				<li>
+					<a href="" class="actived">首页</a>
+				</li>
+				<span></span>
+				<li>
+					<a href="">服务</a>
+					<ul class="s-menu">
+						<i></i>
+						<li><a href="#">医药汇</a></li>
+					</ul>
+				</li>
+				<span></span>
+				<li>
+					<a class="rpt-show-news">动态</a>
+				</li>
+			</ul>
+		</div>
 	</div>
-		
-	</div>
-	<div class="rpt-banner">
-		<div class="rpt-banner-bg"></div>
-		<div class="rpt-banner-front"></div>
+	<div class="rpt-banner loadding" id="rpt-banner">
 	</div>
 	<div class="rpt-wrap">
 		<div class="rpt-news">
 			<div class="rpt-news-left">
-				<div class="rpt-news-pic"></div>
+				<div class="rpt-news-pic loadding">
+					<img src="images/rippletec-news-exmple.jpg" alt="">
+					<img src="images/rippletec-news-exmple-2.jpg" alt="">
+				</div>
 			</div>
 			<div class="rpt-news-right">
 				<div class="rpt-news-title">
-					<h1><i></i>最新动态</h1>
-					<span>更多</span>
+					<h1> <i></i>
+						最新动态
+					</h1>
+					<span class="rpt-show-news">更多</span>
 				</div>
-				<p class="text-title">
-					波纹科技团队2016春季校园招新
-				</p>
-				<p class="text-container">
-					波纹科技团队2016年春季校园招新开始啦，这是波纹团队内部重组之后的第一次对外
-招新，这一次我们会提供给成员更多的机会以及福利支持，让我们先睹为快吧。
-				</p>
-				<p class="text-title">
-					波纹2015年下半年自由开发活动圆满结束
-				</p>
-				<p class="text-title">
-					[讲座] 如何使用Javascript构建高性能App
-				</p>
-				<p class="text-title">
-					广州大学城开发联盟成立会议
-				</p>
-				<p class="text-title">
-					[讲座] 如何使用Javascript构建高性能App
-				</p>
-				<p class="text-title">
-					广州大学城开发联盟成立会议
-				</p>
+				<div class="rpt-news-summary loadding">
+					<div class="rpt-news-item">
+						<p class="text-title">波纹科技团队2016春季校园招新</p>
+						<p class="text-container">
+							波纹科技团队2016年春季校园招新开始啦，这是波纹团队内部重组之后的第一次对外
+	招新，这一次我们会提供给成员更多的机会以及福利支持，让我们先睹为快吧。
+						</p>
+					</div>
+					<div class="rpt-news-item">
+						<p class="text-title">波纹科技团队2016春季校园招新</p>
+						<p class="text-container">
+							波纹科技团队2016年春季校园招新开始啦，这是波纹团队内部重组之后的第一次对外
+	招新，这一次我们会提供给成员更多的机会以及福利支持，让我们先睹为快吧。
+						</p>
+					</div>
+					<div class="rpt-news-item">
+						<p class="text-title">波纹科技团队2016春季校园招新</p>
+						<p class="text-container">
+							波纹科技团队2016年春季校园招新开始啦，这是波纹团队内部重组之后的第一次对外
+	招新，这一次我们会提供给成员更多的机会以及福利支持，让我们先睹为快吧。
+						</p>
+					</div>
+					<div class="rpt-news-item">
+						<p class="text-title">波纹科技团队2016春季校园招新</p>
+						<p class="text-container">
+							波纹科技团队2016年春季校园招新开始啦，这是波纹团队内部重组之后的第一次对外
+	招新，这一次我们会提供给成员更多的机会以及福利支持，让我们先睹为快吧。
+						</p>
+					</div>
+				</div>
+				
 
 			</div>
 		</div>
 	</div>
-	<div class="rippletec-intro">
-		
-	</div>
+	<div class="rippletec-intro"></div>
 	<div class="rpt-wrap">
-		<span class="rippletec-intro-icon">
-			
-		</span>
+		<span class="rippletec-intro-icon"></span>
+	</div>
+	<div class="bg-canvas">
+		<canvas id="bg-canvas"></canvas>
 	</div>
 	<div class="rpt-dark-body">
+		
 		<div class="rpt-wrap">
-			<div class="block-1-4"><div class="icon icon-1"></div><span>创新</span></div>
-			<div class="block-1-4"><div class="icon icon-2"></div><span>快速</span></div>
-			<div class="block-1-4"><div class="icon icon-3"></div><span>开放</span></div>
-			<div class="block-1-4"><div class="icon icon-4"></div><span>专业</span></div>
+			<div class="block-1-4">
+				<div class="icon icon-1"></div>
+				<span>创新</span>
+			</div>
+			<div class="block-1-4">
+				<div class="icon icon-2"></div>
+				<span>快速</span>
+			</div>
+			<div class="block-1-4">
+				<div class="icon icon-3"></div>
+				<span>开放</span>
+			</div>
+			<div class="block-1-4">
+				<div class="icon icon-4"></div>
+				<span>专业</span>
+			</div>
 		</div>
 		<div class="rpt-panel">
-			<div class="rpt-panel-left"><h1>组织<span>架构</span></h1></div>
+			<div class="rpt-panel-left">
+				<h1>
+					组织
+					<span>架构</span>
+				</h1>
+			</div>
 			<div class="rpt-panel-right"></div>
 		</div>
 	</div>
 	<div class="rpt-wrap">
-			<div class="block-1-4">
-				<div class="rpt-branch">
-					<i class="icon-mini icon-5">
-						
-					</i>
-					<h1>决策管理部</h1>
-					<p>项目决策/团队管理</p>
-				</div>
-			</div>
-			<div class="block-1-4">
-				<div class="rpt-branch">
-					<i class="icon-mini icon-6">
-						
-					</i>
-					<h1>项目管理部</h1>
-					<p>项目管理/市场对接</p>
-				</div>
-			</div>
-			<div class="block-1-4">
-				<div class="rpt-branch">
-					<i class="icon-mini icon-7">
-						
-					</i>
-					<h1>技术开发部</h1>
-					<p>多端研发/需求实现</p>
-				</div>
-			</div>
-			<div class="block-1-4">
-				<div class="rpt-branch">
-					<i class="icon-mini icon-8">
-						
-					</i>
-					<h1>设计传媒部</h1>
-					<p>设计美工/对外宣传</p>
-				</div>
+		<div class="block-1-4">
+			<div class="rpt-branch"> <i class="icon-mini icon-5"></i>
+				<h1>决策管理部</h1>
+				<p>项目决策/团队管理</p>
 			</div>
 		</div>
-		<div class="rpt-wrap rpt-activity">
-			<div class="pic-br">
-				<div class="pic-br-left"></div>
-			</div>
-			<div class="rpt-activity-pic">
-				<img src="images/rippletec-activation.png" alt="">
-			</div>
-			<div class="pic-br">
-				<div class="pic-br-right"></div>
+		<div class="block-1-4">
+			<div class="rpt-branch">
+				<i class="icon-mini icon-6"></i>
+				<h1>项目管理部</h1>
+				<p>项目管理/市场对接</p>
 			</div>
 		</div>
-		<div class="rpt-partner">
-			<div class="rpt-panel-partner-right"><h1>客户<span>合作</span></h1></div>
-			<div class="rpt-wrap">
-				<div class="rpt-partner-left"></div>
+		<div class="block-1-4">
+			<div class="rpt-branch">
+				<i class="icon-mini icon-7"></i>
+				<h1>技术开发部</h1>
+				<p>多端研发/需求实现</p>
 			</div>
 		</div>
-		<div class="rpt-wrap rpt-location">
-			<img src="images/rippletec-location.png" alt="">
+		<div class="block-1-4">
+			<div class="rpt-branch">
+				<i class="icon-mini icon-8"></i>
+				<h1>设计传媒部</h1>
+				<p>设计美工/对外宣传</p>
+			</div>
+		</div>
+	</div>
+	<div class="rpt-wrap rpt-activity">
+		<div class="pic-br">
+			<div class="pic-br-left"></div>
+		</div>
+		<div class="rpt-activity-pic" id="rpt-activity-pic">
+			<img class="pogoSlider-slide " data-transition="fade" data-duration="1000" src="images/rippletec-activation.png" alt="">
+			<img class="pogoSlider-slide " data-transition="fade" data-duration="1000" src="images/rippletec-activation-2.png" alt="">
+			<img class="pogoSlider-slide " data-transition="fade" data-duration="1000" src="images/rippletec-activation.png" alt="">
+		</div>
+		<div class="pic-br">
+			<div class="pic-br-right"></div>
+		</div>
+	</div>
+	<div class="rpt-partner">
+		<div class="rpt-panel-partner-right">
+			<h1>
+				客户
+				<span>合作</span>
+			</h1>
 		</div>
 		<div class="rpt-wrap">
-			<div class="rpt-conchat">
-			
+			<div class="rpt-partner-left">
+				<dl>
+					<dd></dd>
+					<dd></dd>
+					<dd></dd>
+					<dd></dd>
+				</dl>
+				<dl>
+					<dd></dd>
+					<dd></dd>
+					<dd></dd>
+					<dd></dd>
+				</dl>
+				<dl>
+					<dd></dd>
+					<dd></dd>
+					<dd></dd>
+					<dd></dd>
+				</dl>
 			</div>
 		</div>
-		<div class="rpt-footer">
-			<p>© 2015 深圳波纹聚联网络科技有限公司 粤ICP备14046848号 粤ICP证B2-20140246号</p>
-		</div>
+	</div>
+	<div class="rpt-wrap rpt-location">
+		<img src="images/rippletec-location.png" alt=""></div>
+	<div class="rpt-wrap">
+		<div class="rpt-conchat"></div>
+	</div>
+	<div class="rpt-footer">
+		<p>© 2015 深圳波纹聚联网络科技有限公司 粤ICP备14046848号 粤ICP证B2-20140246号</p>
+	</div>
+	<script src="vendor/vendor.js"></script>
+	<script src="js/app.js"></script>
 </body>
 </html>

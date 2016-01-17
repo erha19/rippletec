@@ -69,28 +69,47 @@ function rel() {
 }
 
 function sync() {
-    var files=["./**/*"]
-    browserSync.init(files, {
+    var files=[
+        "./js/**/*.js",
+        "./style/**/*.css",
+        "./images/**/*.{jpg,png,gif}",
+        "./**/*.html"
+        ];
+    browserSync.init(files,{
         proxy: "http://localhost:8080"
     });
-    gulp.watch("./sass/**/*.scss", ['sass']);
+    gulp.watch("./sass/compoent/*.scss", ['sass']);
+    gulp.watch("./vendor.json", ['build-vendor']);
     gulp.watch(files).on('change', reload);
 }
 
-gulp.task('build-vendor',function(){
+function buildVendorJs(){
     var filterJS = $.filter('**/*.js', { restore: true }),
         mainFiles=JSON.parse(fs.readFileSync('./vendor.json'));
-        console.log(mainFiles)
     return gulp.src('./package.json')
         .pipe($.mainBowerFiles({
             overrides: mainFiles
         }))
         .pipe(filterJS)
         .pipe($.concat('vendor.js'))
-        .pipe($.uglify())
+        // .pipe($.uglify())
         .pipe(filterJS.restore)
-        .pipe(gulp.dest('./vendor'));
-})
+        .pipe(gulp.dest('./vendor'))
+        .pipe(reload({stream: true}));
+}
+function buildVendorCss(){
+    var filterCSS = $.filter('**/*.css', { restore: true }),
+        mainFiles=JSON.parse(fs.readFileSync('./vendor.json'));
+    return gulp.src('./package.json')
+        .pipe($.mainBowerFiles({
+            overrides: mainFiles
+        }))
+        .pipe(filterCSS)
+        .pipe($.concat('vendor.css'))
+        .pipe($.cssnano())
+        .pipe(filterCSS.restore)
+        .pipe(gulp.dest('./vendor'))
+}
 
 gulp.task('sass', function(){
     return gulp.src('./sass/app.scss')
@@ -99,6 +118,12 @@ gulp.task('sass', function(){
         .pipe(gulp.dest('./style'))
         .pipe(reload({stream: true}));
 });
+
+gulp.task('build-vendor',['buildVendorCss'],buildVendorJs)
+
+gulp.task('buildVendorCss',buildVendorCss)
+
+gulp.task('buildVendorJs',buildVendorJs)
 
 gulp.task('sync',['sass'],sync);
 

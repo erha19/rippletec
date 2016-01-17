@@ -19,12 +19,38 @@
 		height:240px;
 		top: 0;
 		left: 0;
-		background:#fff;
+		background-color:#fff;
 		z-index:10;
-
+		img{
+			margin:0;
+			padding:0;
+			display: block;
+			width: 485px;
+			height: auto;
+			overflow: hidden;
+			position:absolute;
+			z-index: 9;
+			top:0;
+			left: 0;
+			visibility: hidden;
+			opacity: 0;
+			transition: all .3s ease;
+		}
+		.showPic{
+			visibility: visible;
+			opacity: 1;
+		}
+		.actived{
+			visibility: visible;
+			opacity: 1;
+		}
 	}
 }
 .rpt-news-right{
+	.rpt-news-summary{
+		width: 100%;
+		height: 200px;
+	}
 	.rpt-news-title{
 		width: 100%;
 		height: 30px;
@@ -37,6 +63,10 @@
 			display: block;
 			height: 30px;
 			line-height: 30px;
+			cursor:pointer;
+			&:hover{
+				text-decoration: underline;
+			}
 		}
 		h1{
 			height: 29px;
@@ -64,6 +94,19 @@
 			margin:0;
 			padding:0;
 		}
+		.actived{
+			.text-container{
+				height: 40px;
+			}
+		}
+
+		.rpt-news-item{
+			overflow: hidden;
+			opacity:1;
+			visibility:visible;
+			transition:all 1s ease-in;
+			cursor: pointer;
+		}
 		.text-title{
 			display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 			font-size:14px;
@@ -71,17 +114,27 @@
 			line-height: 20px;
 			color:#333;
 			text-align: left;
-			margin:10px 0;
-			margin-left: 15px;
+			padding:10px 0;
+			padding-left: 15px;
+			cursor: pointer;
 		}
 		.text-container{
-			display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+			transition:height .3s ease;
+			height: 0;
+			overflow: hidden;
 			max-height: 40px;
-			margin-left: 15px;
+			word-wrap:break-word; 
+			overflow:hidden;
+			width: 470px;
+			padding-left: 15px;
 			font-size:12px;
 			color:rgba(0,0,0,.5);
 			text-align: left;
 			line-height: 20px;
+
+		}
+		.showItem{
+			height: 40px;
 		}
 }
 /*---介绍---*/
@@ -90,7 +143,7 @@
 	margin-bottom:0;
 	width:100%;
 	height:300px;
-	background:url('../images/rippletec-intro.png') no-repeat center center;
+	background:url('../images/rippletec-intro.jpg') no-repeat center center;
 	background-size:cover;
 }
 .rippletec-intro-icon{
@@ -109,7 +162,7 @@
 	position:relative;
 	z-index:1;
 	height:440px;
-	background:#fafafa;
+	background:rgba(210, 209, 209, 0.11);
 }
 .rpt-panel{
 	position:absolute;
@@ -133,6 +186,7 @@
 			font-weight: normal;
 			font-size: 18px;
 			text-align:right;
+			text-indent:4px;
 			span{
 				position:absolute;
 				color:#ee4533;
@@ -140,7 +194,7 @@
 				text-align: left;
 				width: 100px;
 				height: 30px;
-				left: 254px;
+				left: 250px;
 				top: 30px;
 			}
 		}
@@ -151,7 +205,7 @@
 		top:0;
 		left: 0;
 		height: 60px;
-		background:#fafafa;
+		background:transparent;
 		z-index: 10;
 	}
 }
@@ -184,7 +238,7 @@
 .rpt-branch{
 	width:200px;
 	height:200px;
-	border:1px solid rgba(0,0,0,.1);
+	border:1px solid rgba(68,68,68,.1);
 	position:absolute;
 	top:-60px;
 	left:25px;
@@ -259,23 +313,56 @@
 	background-position:-544px -12px;
 }
 .rpt-activity-pic{
-	margin:20px 0;
+	position:relative;
+	overflow:hidden;
+	height:368px;
+	margin:20px auto;
+	padding-bottom:0 !important;
 	img{
-		width: 1000px;
-		height: auto;
+		width:1000px;
+		position:absolute;
+		left: 0;
+		top:0;
+		height:auto;
 	}
 }
 /*---合作客户----*/
 .rpt-partner{
 	width:100%;
-	height:250px;
-	margin-top:20px;
+	height:302px;
+	margin:20px auto;
+	margin-bottom:100px;
 	position:relative;
 	.rpt-partner-left{
 		float: left;
-		width: 680px;
-		height: 180px;
+		width: 800px;
+		height: 302px;
 		border:1px solid #ddd;
+		dl,dd{
+			display: block;
+			margin:0;
+			padding:0;
+		}
+		dl{
+			width: 800px;
+			height: 99px;
+			background:#fff;
+			border-bottom:1px solid #ddd;
+			&:last-child{
+				height: 100px;
+				border-bottom-width:0px;
+			}
+		}
+		dd{
+			width: 199px;
+			height: 100px;
+			float: left;
+			border-right:1px solid #ddd;
+			&:last-child{
+				width: 200px;
+				border-right-width:0px;
+			}
+		}
 	}
 	.rpt-panel-partner-right{
 		position:absolute;
@@ -315,12 +402,12 @@
 }
 .rpt-conchat{
 	height:120px;
-	width:800px;
-	margin:15px auto;
-	margin-bottom:30px;
+	width:663px;
+	margin:40px auto;
 	background:url('../images/rippletec-icon.png') no-repeat;
 	background-position:-46px -405px;
 }
+/*------页脚-----*/
 .rpt-footer{
 	width:100%;
 	height:40px;
@@ -329,9 +416,281 @@
 	border-top:1px solid #ddd;
 	font-size:12px;
 	text-align:center;
+	position:relative;
+	z-index:10;
 	color:rgba(0,0,0,.5);
 	p{
 		margin:0;
 		padding:0;
+	}
+}
+/*------背景-----*/
+.bg-canvas{
+	width:100%;
+	position:relative;
+}
+#bg-canvas {
+  width: 100%;
+  height: 2192px;
+  background: #fff;
+  position: absolute;
+  z-index: 1;
+}
+.page-transform-mask{
+	position:fixed;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	z-index:9999;
+}
+/*---最新动态--*/
+.rpt-news-top-header{
+	width:100%;
+	height:170px;
+	position:absolute;
+	z-index:1;
+	background:url('../images/rippletec-new-header-bg.png') repeat-x center center;
+	border-top:1px solid rgba(0,0,0,.1);
+}
+.rpt-news-container{
+	position:relative;
+	margin-top:100px;
+}
+.rpt-news-container-title{
+	width:1000px;
+	height:80px;
+	h1,dl,dd{
+		display: block;
+		margin:0;
+		padding:0;
+	}
+	h1{
+		float: left;
+		width: 200px;
+		margin-top: 20px;
+		height: 90px;
+		font-size:28px;
+		font-weight: normal;
+		line-height: 40px;
+		text-align: left;
+		letter-spacing:4px;
+		position:relative;
+		div{
+			background:url('../images/rippletec-news-number.png') no-repeat left center;
+			background-position: -67px 10px;
+			position:absolute;
+			width: 251px;
+			height: 165px;
+			bottom:0;
+			left: 0;
+		}
+	}
+	dl{
+		float: right;
+		margin-top: 20px;
+		dd{
+			float: left;
+			padding:5px 25px;
+			border-radius:20px;
+			font-size:16px;
+			background:#fff;
+			border:1px solid rgba(0,0,0,.1);
+			margin:0px 10px;
+			color: rgba(0,0,0,.4);
+			cursor: pointer;
+		}
+	}
+	.actived{
+		background:#70de2d;
+		color: #fff;
+		border-color:#70de2d;
+	}
+}
+.rpt-news-list{
+	width:100%;
+	overflow:hidden;
+	font-size:14px;
+	color:#333;
+	line-height:30px;
+	li{
+		width: 100%;
+		border-bottom:1px solid rgba(0,0,0,.1);
+		margin-top: 10px;
+		padding-top: 20px;
+		position:relative;
+		padding-bottom:10px;
+		&:nth-child(1){
+			em{
+				background-position: 0 0;
+			}
+			
+		}
+		&:nth-child(2){
+			em{
+				background-position: 0 -50px;
+			}
+			
+		} 
+		&:nth-child(3){
+			em{
+				background-position: 0 -100px;
+			}
+		} 	
+		&:nth-child(4){
+			em{
+				background-position: 0 -152px;
+			}
+			
+		} 
+		&:nth-child(5){
+ 			em{
+ 				background-position: 0 -203px;
+ 			}
+		} 
+		&:nth-child(6){
+			em{
+				background-position: 0 -254px;
+			}
+		} 
+		&:nth-child(7){
+			em{
+				background-position: 0 -305px;
+			}
+		} 
+		&:nth-child(8){
+			em{
+				background-position: 0 -356px;
+			}
+		} 
+		&:nth-child(9){
+			em{
+				background-position: 0 -407px;
+			}
+		} 
+		&:nth-child(10){
+			em{
+				background-position: 0 -458px;
+			}
+		}  
+		em{
+			width: 65px;
+			height: 50px;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			background:url('../images/rippletec-news-number.png') no-repeat left center;
+			
+		}
+		
+	}
+	p,span,i{
+		float: left;
+		display: block;
+	}
+	span{
+		margin-left: 20px;
+		color:rgba(0,0,0,.5);
+	}
+	i{
+		width: 50px;
+		text-align: center;
+		line-height: 24px;
+		margin:3px auto;
+		border-radius:15px;
+		background: #f2f2f2;
+		color:rgba(0,0,0,.4);
+	}
+	p{
+		margin-left: 50px;
+		display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+		width: 800px;
+		height: 30px;
+		text-indent: 20px;
+		font-size: 18px;
+	}
+}
+/*----动态详情----*/
+.rpt-back-btn{
+	width:80px;
+	height:30px;
+	line-height:30px;
+	float:float;
+	text-align:center;
+	background:#FFF;
+	border-radius:15px;
+	border:1px solid rgba(0,0,0,.1);
+	cursor:pointer;
+}
+.rpt-new-detail{
+	margin-top:10px;
+	padding:20px;
+	border-radius:3px;
+	border:1px solid rgba(0,0,0,.1);
+	h1{
+		width: 100%;
+		font-size: 18px;
+		margin:5px 0;
+		line-height: 30px;
+		text-indent: 5px;
+		display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+	}
+	p{
+		width: 100%;
+		margin-top: 5px;
+		height: 30px;
+		line-height: 30px;
+		padding-bottom:20px;
+
+		border-bottom:1px solid rgba(0,0,0,.1);
+		span,i{
+			float: left;
+		}
+		span{
+			width: 50px;
+			text-align: center;
+			line-height: 24px;
+			margin:3px auto;
+			border-radius:15px;
+			background: #f2f2f2;
+			color:rgba(0,0,0,.4);
+		}
+		i{
+			margin-left: 20px;
+			color:rgba(0,0,0,.5);
+		}
+	}
+
+}
+.rpt-new-detail-container{
+	min-height: 300px;
+	h1,p,div{
+		transition: all .2s ease;
+		visibility: visible;
+		opacity: 1;
+	}
+}
+.loadding{
+	width: 100%;
+	position:relative;
+	z-index:999;
+	background:url('../images/rippletec-loadding.gif') no-repeat center center #FFF;
+	h1,p,div{
+		opacity: 0;
+		visibility: hidden;
+	}
+	.rpt-banner-bg,.rpt-banner-front{
+		opacity: 0;
+		visibility: hidden;
+	}
+	.rpt-news-item{
+		opacity: 0;
+		visibility: hidden;
+	}
+	.rpt-news-pic{
+		img{
+			opacity: 0;
+			visibility: hidden;
+		}
 	}
 }

@@ -16,6 +16,7 @@ $activedColor:#00a4ff;
 	width:1000px;
 	margin:0 auto;
 	position: relative;
+	z-index:10;
 }
 .rpt-menu{
 	height:50px;
@@ -26,11 +27,20 @@ $activedColor:#00a4ff;
 		width: 50px;
 		font-size: 14px;
 		float: left;
+		position:relative;
+		z-index: 99;
 		a{
 			color: rgba(0,0,0,.8);
+			transition: color .3s ease;
+			cursor: pointer;
 			&:hover{
 				color:$activedColor;
 			}
+		}
+		&:hover .s-menu{
+			z-index:50;
+			opacity: 1;
+			visibility: visible;
 		}
 	}
 	span{
@@ -43,5 +53,30 @@ $activedColor:#00a4ff;
 	}
 	.actived{
 		color: $activedColor;
+	}
+}
+.s-menu{
+	ul,li,i{
+		margin:0;
+		padding:0;
+		display: block;
+	}
+	position:absolute;
+	visibility:hidden;
+	opacity:0;
+	z-index:1;
+	transition:all .2s ease;
+	top:50px;
+	left:-15px;
+	width:80px;
+	height: 40px;
+	font-size:14px;
+	text-align:center;
+	background:#fff;
+	li{
+		width: 80px;
+		line-height: 30px;
+		padding:5px 0;
+		text-align: center;
 	}
 }

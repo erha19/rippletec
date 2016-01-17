@@ -1,8 +1,11 @@
 .rpt-banner{
 	position:relative;
 	height:400px;
+	padding-bottom:0 !important;
+	div[data-slidr]{
+		width: 100%;
+	}
 	.rpt-banner-bg,.rpt-banner-front{
-		position: absolute;
 		top: 0;
 		left: 0;
 		width:100%;
@@ -10,11 +13,21 @@
 	}
 }
 .rpt-banner-bg{
+	opacity:1;
+	visibility:visible;
+	transition:all 1s ease-in;
+	position: absolute;
 	background:url('../images/banner_end.png') no-repeat center center;
 	background-size:cover;
 	z-index:1;
 }
 .rpt-banner-front{
+	opacity:1;
+	visibility:visible;
+	transition:all 1s ease-in;
+	position:relative;
+	max-width:1000px;
+	margin:0 auto;
 	background:url('../images/banner_front.png') no-repeat center center;
 	background-size:cover;
 	z-index:2;
