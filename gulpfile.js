@@ -3,36 +3,35 @@ var gulp = require('gulp'),
     fs = require('fs'),
     browserSync = require('browser-sync'),
     reload      = browserSync.reload;
-    SRC=__dirname+'/src',
-    DIST=__dirname+'/dist',
+    SRC='.',
+    DIST='../dist',
     PATH={
-        Cssfile:[SRC+'/css/**/*.css'],
-        Jsfile:[SRC+'/js/**/*.js'],
-        Copyfile:[SRC+'/images/**/*'],
-        HtmlFile:[]
+        Cssfile:[SRC+'/vendor/*.css',SRC+'/style/*.css'],
+        Jsfile:[SRC+'/vendor/*.js',SRC+'/js/*.js'],
+        Copyfile:[SRC+'/images/**/*']
     }
 
 function css() {
     return gulp.src(PATH.Cssfile)
-        .pipe($.concat('common.min.css'))
+        .pipe($.concat('app.css'))
         .pipe($.changed(SRC))
         .pipe($.cssnano())
-        .pipe(gulp.dest(DIST + '/styles'));
+        .pipe(gulp.dest(DIST + '/style'));
 }
 
 function js() {
     return gulp.src(PATH.Jsfile)
-        .pipe(plumber())
-        .pipe(stripDebug())
+        .pipe($.plumber())
+        .pipe($.stripDebug())
         .pipe($.changed(SRC))
-        .pipe($.$.uglify())
+        .pipe($.uglify())
         .pipe($.concat('app.js'))
         .pipe(gulp.dest(DIST+'/js'));
 }
 
 
 function md5() {
-    var revall = new RevAll({
+    var revall = new $.revAll({
         dontRenameFile: [/^\/index\.html$/, /^\/favicon.ico$/g],
         transformFilename: function(file, hash) {
             return hash + file.path.slice(file.path.lastIndexOf('.'));
@@ -45,15 +44,16 @@ function md5() {
         .pipe(gulp.dest(DIST));
 }
 
+
 function copy() {
     return gulp.src(PATH.Copyfile)
+        .pipe($.imagemin())
         .pipe($.changed(DIST))
         .pipe(gulp.dest(DIST+'/images'));
 }
 
 function html() {
-    return gulp.src(PATH.HtmlFile)
-        .pipe($.changed(DIST))
+    return gulp.src(DIST + '/index.html')
         .pipe($.htmlmin({
             removeComments: true,
             collapseWhitespace: true
@@ -64,7 +64,7 @@ function html() {
 function rel() {
     return gulp.src(DIST + '/index.html')
         .pipe($.changed(DIST + '/index.html'))
-        .pipe(rev())
+        .pipe($.revAppend())
         .pipe(gulp.dest(DIST));
 }
 
@@ -127,14 +127,16 @@ gulp.task('buildVendorJs',buildVendorJs)
 
 gulp.task('sync',['sass'],sync);
 
+gulp.task('html',['md5'],html)
+
 gulp.task('js',js)
 
 gulp.task('css',css)
 
 gulp.task('copy',copy)
 
-gulp.task('md5',md5)
+gulp.task('md5',['rel'],md5)
 
-gulp.task('rel',rel)
+gulp.task('rel',['js','css','html'],rel)
 
-gulp.task('default', ['md5']);
+gulp.task('build', ['html'],rel);

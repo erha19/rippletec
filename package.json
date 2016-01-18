@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "dependencies": {
     "pogo-slider": "https://github.com/mdgriffin/pogo-slider",
-    "TweenMax":"*",
+    "TweenMax": "*",
     "jquery": "^2.2.0"
   },
   "devDependencies": {
@@ -16,10 +16,15 @@
     "gulp-concat": "*",
     "gulp-cssnano": "*",
     "gulp-filter": "^3.0.1",
-    "gulp-htmlmin": "*",
+    "gulp-htmlmin": "^1.3.0",
+    "gulp-imagemin": "^2.4.0",
     "gulp-load-plugins": "^1.2.0",
     "gulp-main-bower-files": "^1.3.1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rev-all": "^0.8.22",
+    "gulp-rev-append": "^0.1.6",
     "gulp-sass": "^2.1.1",
+    "gulp-strip-debug": "^1.1.0",
     "gulp-uglify": "*"
   },
   "scripts": {
