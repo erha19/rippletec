@@ -22,8 +22,6 @@ $(function() {
 		MENU: '.rpt-menu',
 		LOADDINGMASK: '.page-transform-mask',
 		NEWS_TOP_HEADER: '.rpt-news-top-header',
-		SHOW_NEWS: '.rpt-show-news',
-		SHOW_INDEX: '.showIndex',
 		NEWS_TITLE_TYPE_MENU: '.rpt-news-container-title',
 		NEWS_DETAIL_ITEM:'.rpt-news-item-btn',
 		NEWS_DETAIL_CONTAINER:'.rpt-new-detail',
@@ -36,13 +34,49 @@ $(function() {
 		LOADDING_TEMPLATE: '<div class="page-transform-mask"><canvas id="mask"></canvas></div>',
 		//AJAX_CONFIG
 		GETLIST_URL: '/index.php/Index/News/getPage',
-		GETBANNER_URL: '/index.php/index/banner/getAll',
+		GETBANNER_URL: '/index.php/index/Banner/getAll',
 		GETINDEX_NEWS_URL: '/index.php/Index/News/getSummary',
 		GETPARTNER_URL: '/index.php/Index/Cooperation/getAll',
 		GETPAGENUMBER_URL: '/index.php/Index/News/getPageNum',
 		GETNEWSDETAIL_URL:'/index.php/Index/News/getDetail'
 
 	}
+	Q.reg([
+	    ['home',function(){
+	    	var menu=$(RIPPLETEC_CONFIG.MENU).find('a')
+	    	menu.removeClass(RIPPLETEC_CONFIG.ACTIVED_CSSNAME)
+			$(menu[0]).addClass(RIPPLETEC_CONFIG.ACTIVED_CSSNAME)
+			$('body').prepend(RIPPLETEC_CONFIG.LOADDING_TEMPLATE);
+			tid = null;
+			easeHide(loadIndexPage);
+	    }],
+	    ['article',function(aid){
+	    	$(RIPPLETEC_CONFIG.MENU).find('a').removeClass(RIPPLETEC_CONFIG.ACTIVED_CSSNAME)
+			$('body').prepend(RIPPLETEC_CONFIG.LOADDING_TEMPLATE);
+			tid = null;
+			RIPPLETEC_CONFIG.GETNEWS_DETAIL_ID=aid;
+			easeHide(loadNewDetailPage);
+	    }],
+	    ['news',function(type,page){
+	    	var  page = page || 1,
+	    		 type = type || 0;
+	    		 RIPPLETEC_CONFIG.GETNEWLIST_TYPE = type;
+	    		 RIPPLETEC_CONFIG.GETNEWLIST_PAGENUM=page;
+
+			var  menu=$(RIPPLETEC_CONFIG.MENU).find('a')
+	    		 menu.removeClass(RIPPLETEC_CONFIG.ACTIVED_CSSNAME)
+				 $(menu[3]).addClass(RIPPLETEC_CONFIG.ACTIVED_CSSNAME)
+			
+
+				 $('body').prepend(RIPPLETEC_CONFIG.LOADDING_TEMPLATE);
+				 tid = null;
+				 easeHide(loadNewPage);
+	    }]
+	]);
+
+	Q.init({
+	    index:'home' /* 首页地址 不可访问路径也会跳回此地址 */
+	});
 
 	function getBanner() {
 		var url = RIPPLETEC_CONFIG.GETBANNER_URL,
@@ -71,44 +105,90 @@ $(function() {
 		})
 	}
 
+	function getPartner() {
+		var url = RIPPLETEC_CONFIG.GETPARTNER_URL,
+			len,
+			img = '',
+			$partner = $($(RIPPLETEC_CONFIG.PARTNER)[0]);
+		$.post(url).then(function(data) {
+			data = JSON.parse(data);
+			len = data.length;
+			for (var i = 0; i < 12; i++) {
+				if (i % 4 == 0) {
+					if (data[i])
+						img += '<dl><dd><img src="' + data[i].logo + '" alt=""></dd>'
+					else
+						img += '<dl><dd></dd>'
+				} else if ((i + 1) % 4 == 0) {
+					if (data[i])
+						img += '<dd><img src="' + data[i].logo + '" alt=""></dd></dl>'
+					else
+						img += '<dd></dd></dl>'
+				} else {
+					if (data[i])
+						img += '<dd><img src="' + data[i].logo + '" alt=""></dd>'
+					else
+						img += '<dd></dd>'
+				}
+			}
+			$partner.html(img)
+			setTimeout(function() {
+				$partner.removeClass(RIPPLETEC_CONFIG.LOADDING_CSSNAME)
+				$(RIPPLETEC_CONFIG.ACTIVITY_BANNER).pogoSlider({
+					autoplay: true,
+					autoplayTimeout: 5000,
+					displayProgess: true,
+					preserveTargetSize: true,
+					targetWidth: 1000,
+					targetHeight: 300,
+					responsive: true
+				}).data(RIPPLETEC_CONFIG.SLIDER_DATA);
+			}, 500);
+		})
+
+
+	}
+
 	function getNewList() {
 		var url = RIPPLETEC_CONFIG.GETLIST_URL,
 			pagenegation_url = RIPPLETEC_CONFIG.GETPAGENUMBER_URL,
 			str = '',
 			pagestr = '',
-			$news_type_menu = $(RIPPLETEC_CONFIG.NEWS_TITLE_TYPE_MENU).find('dd');
-		$news_type_menu.removeClass(RIPPLETEC_CONFIG.ACTIVED_CSSNAME);
-		$($news_type_menu[RIPPLETEC_CONFIG.GETNEWLIST_TYPE]).addClass(RIPPLETEC_CONFIG.ACTIVED_CSSNAME)
-		$newList = $(RIPPLETEC_CONFIG.NEWLIST);
-		$newpagenagation = $(RIPPLETEC_CONFIG.NEWLIST_PAGENAGATION);
-		$newList.html('');
-		$newpagenagation.html('');
-		$newList.addClass(RIPPLETEC_CONFIG.LOADDING_CSSNAME)
-		$.post(url, {
-			page_num: RIPPLETEC_CONFIG.GETNEWLIST_PAGENUM,
-			type: RIPPLETEC_CONFIG.GETNEWLIST_TYPE
-		}).then(function(data) {
-			data = JSON.parse(data);
-			for (var i in data) {
-				str += '<li class="clearfix rpt-news-item-btn" data-id="'+data[i].id+'"><em></em><p>' + data[i].title + '</p><i>' + RIPPLETEC_CONFIG.TYPENAME[RIPPLETEC_CONFIG.GETNEWLIST_TYPE] + '</i><span>' + data[i].updateTime.slice(0, 10) + '</span></li>'
-			}
-			if (str == '')
-				str = '<p>暂无任何内容</p>'
-			$(str).hide().appendTo($newList).fadeIn()
-			$newList.removeClass(RIPPLETEC_CONFIG.LOADDING_CSSNAME)
+			$news_type_menu = $(RIPPLETEC_CONFIG.NEWS_TITLE_TYPE_MENU).find('dd'),
+			$newpagenagation = $(RIPPLETEC_CONFIG.NEWLIST_PAGENAGATION),
+			$newList = $(RIPPLETEC_CONFIG.NEWLIST);
+			$newList.html('');
+			$newpagenagation.html('');
+			$newList.addClass(RIPPLETEC_CONFIG.LOADDING_CSSNAME)
+			$news_type_menu.removeClass(RIPPLETEC_CONFIG.ACTIVED_CSSNAME);
+			$($news_type_menu[RIPPLETEC_CONFIG.GETNEWLIST_TYPE]).addClass(RIPPLETEC_CONFIG.ACTIVED_CSSNAME)
+			
+			
+			$.post(url, {
+				page_num: RIPPLETEC_CONFIG.GETNEWLIST_PAGENUM,
+				type: RIPPLETEC_CONFIG.GETNEWLIST_TYPE
+			}).then(function(data) {
+				data = JSON.parse(data);
+				for (var i in data) {
+					str += '<li class="clearfix rpt-news-item-btn" data-id="'+data[i].id+'"><em></em><a href="#!article/'+data[i].id+'">' + data[i].title + '</a><i>' + RIPPLETEC_CONFIG.TYPENAME[RIPPLETEC_CONFIG.GETNEWLIST_TYPE] + '</i><span>' + data[i].updateTime.slice(0, 10) + '</span></li>'
+				}
+				if (str == '')
+					str = '<p class="text-center">暂无任何内容</p>'
+				$(str).hide().appendTo($newList).fadeIn()
+				setTimeout(function(){$newList.removeClass(RIPPLETEC_CONFIG.LOADDING_CSSNAME)},1000);
 
-		})
-		$.post(pagenegation_url, {
-			type: RIPPLETEC_CONFIG.GETNEWLIST_TYPE
-		}).then(function(num) {
-			for (var i = 1; i <= num; i++) {
-				if (i == RIPPLETEC_CONFIG.GETNEWLIST_PAGENUM)
-					pagestr += '<a class="actived">' + i + '</a>'
-				else
-					pagestr += '<a>' + i + '</a>'
-			}
-			$(pagestr).hide().appendTo($newpagenagation).fadeIn()
-		})
+			})
+			$.post(pagenegation_url, {
+				type: RIPPLETEC_CONFIG.GETNEWLIST_TYPE
+			}).then(function(num) {
+				for (var i = 1; i <= num; i++) {
+					if (i == RIPPLETEC_CONFIG.GETNEWLIST_PAGENUM)
+						pagestr += '<a href="#!news/'+RIPPLETEC_CONFIG.GETNEWLIST_TYPE+'/'+i+'" class="actived">' + i + '</a>'
+					else
+						pagestr += '<a href="#!news/'+RIPPLETEC_CONFIG.GETNEWLIST_TYPE+'/'+i+'" >' + i + '</a>'
+				}
+				$(pagestr).hide().appendTo($newpagenagation).fadeIn()
+			})
 	}
 
 
@@ -122,11 +202,10 @@ $(function() {
 		$.post(url, {
 			news_num: news_num
 		}).then(function(data) {
-			data = JSON.parse(data)
-			console.log(data)
+			data=JSON.parse(data)
 			for (var i in data) {
 				img += '<img src="' + data[i].coverImg + '" alt="">'
-				str += '<div class="rpt-news-item rpt-news-item-btn" data-id="'+data[i].id+'"><p class="text-title">' + data[i].title + '</p><p class="text-container">' + data[i].summary + '</p></div>'
+				str += '<div class="rpt-news-item rpt-news-item-btn" data-id="'+data[i].id+'"><a href="#!article/'+data[i].id+'" class="text-title">' + data[i].title + '</a><p class="text-container">' + data[i].summary + '</p></div>'
 			}
 			$newPic.html(img);
 			$news.html(str);
@@ -172,50 +251,7 @@ $(function() {
 
 	}
 
-	function getPartner() {
-		var url = RIPPLETEC_CONFIG.GETPARTNER_URL,
-			len,
-			img = '',
-			$partner = $($(RIPPLETEC_CONFIG.PARTNER)[0]);
-		$.post(url).then(function(data) {
-			data = JSON.parse(data);
-			len = data.length;
-			console.log(data)
-			for (var i = 0; i < 12; i++) {
-				if (i % 4 == 0) {
-					if (data[i])
-						img += '<dl><dd><img src="' + data[i].logo + '" alt=""></dd>'
-					else
-						img += '<dl><dd></dd>'
-				} else if ((i + 1) % 4 == 0) {
-					if (data[i])
-						img += '<dd><img src="' + data[i].logo + '" alt=""></dd></dl>'
-					else
-						img += '<dd></dd></dl>'
-				} else {
-					if (data[i])
-						img += '<dd><img src="' + data[i].logo + '" alt=""></dd>'
-					else
-						img += '<dd></dd>'
-				}
-			}
-			$partner.append(img)
-			setTimeout(function() {
-				$partner.removeClass(RIPPLETEC_CONFIG.LOADDING_CSSNAME)
-				$(RIPPLETEC_CONFIG.ACTIVITY_BANNER).pogoSlider({
-					autoplay: true,
-					autoplayTimeout: 5000,
-					displayProgess: true,
-					preserveTargetSize: true,
-					targetWidth: 1000,
-					targetHeight: 300,
-					responsive: true
-				}).data(RIPPLETEC_CONFIG.SLIDER_DATA);
-			}, 500);
-		})
-
-
-	}
+	
 
 	function getNewDetail(){
 		var url = RIPPLETEC_CONFIG.GETNEWSDETAIL_URL,
@@ -235,6 +271,7 @@ $(function() {
 
 	function loadNewPage() {
 		$(RIPPLETEC_CONFIG.MAIN).hide()
+		$(RIPPLETEC_CONFIG.THIRDPAGE).hide()
 		$(RIPPLETEC_CONFIG.NEWS_TOP_HEADER).show()
 		$(RIPPLETEC_CONFIG.SECONDPAGE).fadeIn()
 		if($(RIPPLETEC_CONFIG.SECONDPAGE).html()=='')
@@ -245,6 +282,7 @@ $(function() {
 	}
 
 	function loadIndexPage() {
+		init();
 		$(RIPPLETEC_CONFIG.NEWS_TOP_HEADER).hide()
 		$(RIPPLETEC_CONFIG.SECONDPAGE).hide()
 		$(RIPPLETEC_CONFIG.THIRDPAGE).hide()
@@ -255,64 +293,19 @@ $(function() {
 		$(RIPPLETEC_CONFIG.SECONDPAGE).hide()
 		$(RIPPLETEC_CONFIG.NEWS_TOP_HEADER).show()
 		$(RIPPLETEC_CONFIG.MAIN).hide()
+		$(RIPPLETEC_CONFIG.THIRDPAGE).show()
 		if($(RIPPLETEC_CONFIG.THIRDPAGE).html()=='')
 			$(RIPPLETEC_CONFIG.NEWDetail_TEMPLATE).hide().appendTo($(RIPPLETEC_CONFIG.THIRDPAGE)).fadeIn();
 		setTimeout(function() {
 			getNewDetail();
 		}, 500);
 	}
-	$(RIPPLETEC_CONFIG.SHOW_NEWS).on('click', function(e) {
-		e.preventDefault();
-		$(RIPPLETEC_CONFIG.MENU).find('a').removeClass(RIPPLETEC_CONFIG.ACTIVED_CSSNAME)
-		$(this).addClass(RIPPLETEC_CONFIG.ACTIVED_CSSNAME)
-		$('body').prepend(RIPPLETEC_CONFIG.LOADDING_TEMPLATE);
-		tid = null;
-		easeHide(loadNewPage);
-	});
-
-	$(RIPPLETEC_CONFIG.SHOW_INDEX).on('click', function(e) {
-		e.preventDefault();
-		$(RIPPLETEC_CONFIG.MENU).find('a').removeClass(RIPPLETEC_CONFIG.ACTIVED_CSSNAME)
-		$(this).addClass(RIPPLETEC_CONFIG.ACTIVED_CSSNAME)
-		$('body').prepend(RIPPLETEC_CONFIG.LOADDING_TEMPLATE);
-		tid = null;
-		easeHide(loadIndexPage);
-	});
-	$(document).on('click',RIPPLETEC_CONFIG.NEWS_DETAIL_ITEM,function(e){
-		e.stopPropagation();
-		e.preventDefault();
-		$(RIPPLETEC_CONFIG.MENU).find('a').removeClass(RIPPLETEC_CONFIG.ACTIVED_CSSNAME)
-		$('body').prepend(RIPPLETEC_CONFIG.LOADDING_TEMPLATE);
-		tid = null;
-		RIPPLETEC_CONFIG.GETNEWS_DETAIL_ID=$(this).data('id');
-		easeHide(loadNewDetailPage);
-	})
-	$(document).on('click',RIPPLETEC_CONFIG.NEWLIST_PAGENAGATION+' a',function(e){
-		e.stopPropagation();
-		e.preventDefault();
-		RIPPLETEC_CONFIG.GETNEWLIST_PAGENUM = $(this).text();
-		getNewList();
-	})
-	$(document).on('click', RIPPLETEC_CONFIG.NEWS_TITLE_TYPE_MENU + ' dd', function(e) {
-		e.preventDefault();
-		e.stopPropagation()
-		var type = 0;
-		for (; type < RIPPLETEC_CONFIG.TYPENAME.length; type++) {
-			if ($(this).text() == RIPPLETEC_CONFIG.TYPENAME[type])
-				break;
-		}
-		console.log(type)
-		RIPPLETEC_CONFIG.GETNEWLIST_TYPE = type;
-		getNewList();
-	})
 
 	function init(){
 		getPartner()
 		getNews()
 		getBanner()
 	}
-	/*---启动函数---*/
-	init();
 
 
 	/*---加载动画---*/

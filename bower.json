@@ -1,0 +1,28 @@
+{
+  "name": "rippletec",
+  "description": "",
+  "main": "gulpfile.js",
+  "authors": [
+    "simplefatty"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/simplefatty/rippletec",
+  "moduleType": [],
+  "overrides": {
+    "jquery": {
+      "main": [
+        "./dist/jquery.js"
+      ]
+    }
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.2"
+  }
+}

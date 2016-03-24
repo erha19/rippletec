@@ -1,6 +1,9 @@
 var gulp = require('gulp'),
-    $    = require('gulp-load-plugins')(),
+    $    = require('gulp-load-plugins')({
+        pattern: ['gulp-*', 'uglify-save-license', 'del','imagemin-pngquant']
+    }),
     fs = require('fs'),
+    browserSyncSpa = require('browser-sync-spa'),
     browserSync = require('browser-sync'),
     reload      = browserSync.reload;
     SRC='.',
@@ -47,7 +50,11 @@ function md5() {
 
 function copy() {
     return gulp.src(PATH.Copyfile)
-        .pipe($.imagemin())
+        .pipe($.imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [$.imageminPngquant()]
+         }))
         .pipe($.changed(DIST))
         .pipe(gulp.dest(DIST+'/images'));
 }
@@ -79,47 +86,54 @@ function sync() {
         proxy: "http://localhost:8080"
     });
     gulp.watch("./sass/compoent/*.scss", ['sass']);
-    gulp.watch("./vendor.json", ['build-vendor']);
+    // gulp.watch("./vendor.json", ['build-vendor']);
     gulp.watch(files).on('change', reload);
 }
 
 function buildVendorJs(){
-    var filterJS = $.filter('**/*.js', { restore: true }),
-        mainFiles=JSON.parse(fs.readFileSync('./vendor.json'));
-    return gulp.src('./package.json')
-        .pipe($.mainBowerFiles({
-            overrides: mainFiles
-        }))
+    var filterJS = $.filter('**/*.js', { restore: true });
+    return gulp.src('./bower.json')
+        .pipe($.mainBowerFiles())
         .pipe(filterJS)
-        .pipe($.concat('vendor.js'))
-        // .pipe($.uglify())
         .pipe(filterJS.restore)
         .pipe(gulp.dest('./vendor'))
-        .pipe(reload({stream: true}));
 }
 function buildVendorCss(){
-    var filterCSS = $.filter('**/*.css', { restore: true }),
-        mainFiles=JSON.parse(fs.readFileSync('./vendor.json'));
-    return gulp.src('./package.json')
-        .pipe($.mainBowerFiles({
-            overrides: mainFiles
-        }))
+    var filterCSS = $.filter('**/*.css', { restore: true });
+    return gulp.src('./bower.json')
+        .pipe($.mainBowerFiles())
         .pipe(filterCSS)
         .pipe($.concat('vendor.css'))
         .pipe($.cssnano())
         .pipe(filterCSS.restore)
         .pipe(gulp.dest('./vendor'))
 }
+function buildVender(){
+    var filterCSS = $.filter('**/*.css', { restore: true }),
+        filterJS = $.filter('**/*.js', { restore: true });
+    return gulp.src(['./vendor/**/*','!vendor/vendor.js','!vendor/vendor.css'])
+           .pipe(filterJS)
+           .pipe($.order(['/vendor/jquery/**/*.js','/vendor/**/*.js']))
+           .pipe($.concat('vendor.js'))
+           .pipe($.uglify())
+           .pipe(filterJS.restore)
+           .pipe(filterCSS)
+           .pipe($.concat('vendor.css'))
+           .pipe($.cssnano())
+           .pipe(filterCSS.restore)
+           .pipe(gulp.dest('./vendor'))
+           .pipe(reload({stream: true}));
+}
 
 gulp.task('sass', function(){
     return gulp.src('./sass/app.scss')
         .pipe($.sass().on('error', $.sass.logError))
-        // .pipe($.autoprefixer('last 2 version', 'ie 8', 'ie 9'))
+        .pipe($.autoprefixer('last 20 version', 'ie 8', 'ie 9'))
         .pipe(gulp.dest('./style'))
         .pipe(reload({stream: true}));
 });
 
-gulp.task('build-vendor',['buildVendorCss'],buildVendorJs)
+gulp.task('build-vendor',['buildVendorCss','buildVendorJs'],buildVender)
 
 gulp.task('buildVendorCss',buildVendorCss)
 

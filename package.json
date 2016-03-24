@@ -4,9 +4,10 @@
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
-    "pogo-slider": "https://github.com/mdgriffin/pogo-slider",
     "TweenMax": "*",
-    "jquery": "^2.2.0"
+    "gulp-order": "^1.1.1",
+    "jquery": "^2.2.0",
+    "pogo-slider": "https://github.com/mdgriffin/pogo-slider"
   },
   "devDependencies": {
     "browser-sync": "^2.10.0",

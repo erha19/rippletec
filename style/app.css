@@ -71,7 +71,8 @@ a {
     z-index: 99; }
     .rpt-menu li a {
       color: rgba(0, 0, 0, 0.8);
-      transition: color .3s ease;
+      -webkit-transition: color .3s ease;
+              transition: color .3s ease;
       cursor: pointer; }
       .rpt-menu li a:hover {
         color: #00a4ff; }
@@ -94,7 +95,8 @@ a {
   visibility: hidden;
   opacity: 0;
   z-index: 1;
-  transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+          transition: all .2s ease;
   top: 50px;
   left: -15px;
   width: 80px;
@@ -115,7 +117,8 @@ a {
 /**slidr**/
 .rpt-activity-pic > .pogoSlider-nav {
   left: 915px;
-  transform: translateX(0); }
+  -webkit-transform: translateX(0);
+          transform: translateX(0); }
 
 .pogoSlider-nav-btn {
   width: 12px;
@@ -136,7 +139,8 @@ a {
 .rpt-banner-bg {
   opacity: 1;
   visibility: visible;
-  transition: all 1s ease-in;
+  -webkit-transition: all 1s ease-in;
+          transition: all 1s ease-in;
   position: absolute;
   background: url("../images/banner_end.png") no-repeat center center;
   background-size: cover;
@@ -145,7 +149,8 @@ a {
 .rpt-banner-front {
   opacity: 1;
   visibility: visible;
-  transition: all 1s ease-in;
+  -webkit-transition: all 1s ease-in;
+          transition: all 1s ease-in;
   position: relative;
   max-width: 1000px;
   margin: 0 auto;
@@ -172,6 +177,7 @@ a {
     position: absolute;
     width: 485px;
     height: 240px;
+    overflow: hidden;
     top: 0;
     left: 0;
     background-color: #fff;
@@ -189,7 +195,8 @@ a {
       left: 0;
       visibility: hidden;
       opacity: 0;
-      transition: all .3s ease; }
+      -webkit-transition: all .3s ease;
+              transition: all .3s ease; }
     .rpt-news-left .rpt-news-pic .showPic {
       visibility: visible;
       opacity: 1; }
@@ -206,7 +213,7 @@ a {
   height: 30px;
   border-bottom: 1px solid #ddd;
   margin-left: 15px; }
-  .rpt-news-right .rpt-news-title span {
+  .rpt-news-right .rpt-news-title a {
     float: right;
     font-size: 14px;
     color: #ddd;
@@ -214,7 +221,7 @@ a {
     height: 30px;
     line-height: 30px;
     cursor: pointer; }
-    .rpt-news-right .rpt-news-title span:hover {
+    .rpt-news-right .rpt-news-title a:hover {
       text-decoration: underline; }
   .rpt-news-right .rpt-news-title h1 {
     height: 29px;
@@ -246,7 +253,8 @@ a {
   overflow: hidden;
   opacity: 1;
   visibility: visible;
-  transition: all 1s ease-in;
+  -webkit-transition: all 1s ease-in;
+          transition: all 1s ease-in;
   cursor: pointer; }
 
 .rpt-news-right .text-title {
@@ -264,7 +272,8 @@ a {
   cursor: pointer; }
 
 .rpt-news-right .text-container {
-  transition: height .3s ease;
+  -webkit-transition: height .3s ease;
+          transition: height .3s ease;
   height: 0;
   overflow: hidden;
   max-height: 40px;
@@ -475,7 +484,8 @@ a {
       display: block;
       margin: 0;
       padding: 0;
-      transition: all .2s ease;
+      -webkit-transition: all .2s ease;
+              transition: all .2s ease;
       visibility: visible;
       opacity: 1; }
     .rpt-partner .rpt-partner-left dl {
@@ -585,7 +595,8 @@ a {
 
 .rpt-news-container {
   position: relative;
-  margin-top: 100px; }
+  margin-top: 100px;
+  margin-bottom: 30px; }
 
 .rpt-news-detail-container {
   position: relative;
@@ -622,19 +633,23 @@ a {
     margin-top: 20px; }
     .rpt-news-container-title dl dd {
       float: left;
-      padding: 5px 25px;
       border-radius: 20px;
       font-size: 16px;
       background: #fff;
       border: 1px solid rgba(0, 0, 0, 0.1);
       margin: 0px 10px;
-      color: rgba(0, 0, 0, 0.4);
       cursor: pointer;
-      transition: all .1s ease; }
+      -webkit-transition: all .1s ease;
+              transition: all .1s ease; }
+      .rpt-news-container-title dl dd a {
+        display: block;
+        padding: 5px 25px;
+        color: rgba(0, 0, 0, 0.4); }
   .rpt-news-container-title .actived {
     background: #70de2d;
-    color: #fff;
     border-color: #70de2d; }
+    .rpt-news-container-title .actived a {
+      color: #fff; }
 
 .rpt-news-list {
   width: 100%;
@@ -642,8 +657,13 @@ a {
   font-size: 14px;
   color: #333;
   line-height: 30px;
-  min-height: 200px;
-  transition: all .2s ease; }
+  min-height: 300px; }
+  .rpt-news-list .text-center {
+    text-align: center;
+    font-size: 16px;
+    line-height: 30px; }
+  .rpt-news-list > li:last-child {
+    border-bottom-width: 0; }
   .rpt-news-list li {
     width: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -679,7 +699,7 @@ a {
       top: 0px;
       left: 0px;
       background: url("../images/rippletec-news-number.png") no-repeat left center; }
-  .rpt-news-list p, .rpt-news-list span, .rpt-news-list i {
+  .rpt-news-list a, .rpt-news-list span, .rpt-news-list i {
     float: left;
     display: block; }
   .rpt-news-list span {
@@ -693,9 +713,10 @@ a {
     border-radius: 15px;
     background: #f2f2f2;
     color: rgba(0, 0, 0, 0.4); }
-  .rpt-news-list p {
+  .rpt-news-list a {
     margin: 0;
     margin-left: 50px;
+    color: #333;
     display: block;
     white-space: nowrap;
     overflow: hidden;
@@ -704,6 +725,8 @@ a {
     height: 30px;
     text-indent: 20px;
     font-size: 18px; }
+    .rpt-news-list a:hover, .rpt-news-list a:active, .rpt-news-list a:visited {
+      color: #333; }
 
 /*----动态详情----*/
 .rpt-back-btn {
@@ -786,7 +809,8 @@ p {
 .rpt-new-detail-container {
   min-height: 300px; }
   .rpt-new-detail-container h1, .rpt-new-detail-container p, .rpt-new-detail-container div {
-    transition: all .2s ease;
+    -webkit-transition: all .2s ease;
+            transition: all .2s ease;
     visibility: visible;
     opacity: 1; }
 
@@ -795,6 +819,8 @@ p {
   position: relative;
   z-index: 999;
   background: url("../images/rippletec-loadding.gif") no-repeat center center #FFF; }
+  .loadding .rpt-news-item-btn {
+    opacity: 0; }
   .loadding h1, .loadding p, .loadding div {
     opacity: 0;
     visibility: hidden; }
