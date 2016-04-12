@@ -51,9 +51,14 @@ a {
   width: 225px;
   background: url("../images/rippletec-icon.png") no-repeat;
   background-position: -46px -12px; }
+  @media screen and (max-width: 480px) {
+    .rpt-logo {
+      margin: 0 auto;
+      float: none; } }
 
 .rpt-wrap {
-  width: 1000px;
+  max-width: 1000px;
+  width: 100%;
   margin: 0 auto;
   position: relative;
   z-index: 10; }
@@ -63,6 +68,9 @@ a {
   float: right;
   line-height: 50px;
   text-align: center; }
+  @media screen and (max-width: 480px) {
+    .rpt-menu {
+      display: none; } }
   .rpt-menu li {
     width: 50px;
     font-size: 14px;
@@ -72,7 +80,7 @@ a {
     .rpt-menu li a {
       color: rgba(0, 0, 0, 0.8);
       -webkit-transition: color .3s ease;
-              transition: color .3s ease;
+      transition: color .3s ease;
       cursor: pointer; }
       .rpt-menu li a:hover {
         color: #00a4ff; }
@@ -96,7 +104,7 @@ a {
   opacity: 0;
   z-index: 1;
   -webkit-transition: all .2s ease;
-          transition: all .2s ease;
+  transition: all .2s ease;
   top: 50px;
   left: -15px;
   width: 80px;
@@ -118,7 +126,8 @@ a {
 .rpt-activity-pic > .pogoSlider-nav {
   left: 915px;
   -webkit-transform: translateX(0);
-          transform: translateX(0); }
+  -ms-transform: translateX(0);
+  transform: translateX(0); }
 
 .pogoSlider-nav-btn {
   width: 12px;
@@ -135,12 +144,23 @@ a {
     left: 0;
     width: 100%;
     height: 400px; }
+    @media screen and (max-width: 480px) {
+      .rpt-banner .rpt-banner-bg, .rpt-banner .rpt-banner-front {
+        max-width: 100%;
+        height: 160px; } }
+  @media screen and (max-width: 480px) {
+    .rpt-banner {
+      max-width: 100%;
+      height: 160px; } }
+
+.pogoSlider-progressBar, .pogoSlider-nav {
+  z-index: 50; }
 
 .rpt-banner-bg {
   opacity: 1;
   visibility: visible;
   -webkit-transition: all 1s ease-in;
-          transition: all 1s ease-in;
+  transition: all 1s ease-in;
   position: absolute;
   background: url("../images/banner_end.png") no-repeat center center;
   background-size: cover;
@@ -150,7 +170,7 @@ a {
   opacity: 1;
   visibility: visible;
   -webkit-transition: all 1s ease-in;
-          transition: all 1s ease-in;
+  transition: all 1s ease-in;
   position: relative;
   max-width: 1000px;
   margin: 0 auto;
@@ -163,16 +183,39 @@ a {
   height: 240px;
   width: 100%;
   margin: 50px auto; }
+  @media screen and (max-width: 480px) {
+    .rpt-news {
+      margin: 10px 0;
+      overflow: hidden;
+      height: auto; } }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0; }
+
+.clearfix {
+  display: block; }
 
 .rpt-news-left, .rpt-news-right {
   width: 485px;
   height: 240px;
   float: left; }
+  @media screen and (max-width: 480px) {
+    .rpt-news-left, .rpt-news-right {
+      width: 100%;
+      height: 280px; } }
 
 .rpt-news-left {
   margin-right: 15px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   position: relative; }
+  @media screen and (max-width: 480px) {
+    .rpt-news-left {
+      display: none; } }
   .rpt-news-left .rpt-news-pic {
     position: absolute;
     width: 485px;
@@ -196,7 +239,7 @@ a {
       visibility: hidden;
       opacity: 0;
       -webkit-transition: all .3s ease;
-              transition: all .3s ease; }
+      transition: all .3s ease; }
     .rpt-news-left .rpt-news-pic .showPic {
       visibility: visible;
       opacity: 1; }
@@ -207,12 +250,19 @@ a {
 .rpt-news-right .rpt-news-summary {
   width: 100%;
   height: 200px; }
+  @media screen and (max-width: 480px) {
+    .rpt-news-right .rpt-news-summary {
+      width: 100%;
+      height: 280px; } }
 
 .rpt-news-right .rpt-news-title {
   width: 100%;
   height: 30px;
   border-bottom: 1px solid #ddd;
   margin-left: 15px; }
+  @media screen and (max-width: 480px) {
+    .rpt-news-right .rpt-news-title {
+      display: none; } }
   .rpt-news-right .rpt-news-title a {
     float: right;
     font-size: 14px;
@@ -254,7 +304,7 @@ a {
   opacity: 1;
   visibility: visible;
   -webkit-transition: all 1s ease-in;
-          transition: all 1s ease-in;
+  transition: all 1s ease-in;
   cursor: pointer; }
 
 .rpt-news-right .text-title {
@@ -270,10 +320,15 @@ a {
   padding: 10px 0;
   padding-left: 15px;
   cursor: pointer; }
+  @media screen and (max-width: 480px) {
+    .rpt-news-right .text-title {
+      font-size: 16px;
+      max-height: 30px;
+      line-height: 30px; } }
 
 .rpt-news-right .text-container {
   -webkit-transition: height .3s ease;
-          transition: height .3s ease;
+  transition: height .3s ease;
   height: 0;
   overflow: hidden;
   max-height: 40px;
@@ -297,6 +352,9 @@ a {
   height: 300px;
   background: url("../images/rippletec-intro.jpg") no-repeat center center;
   background-size: cover; }
+  @media screen and (max-width: 480px) {
+    .rippletec-intro {
+      display: none; } }
 
 .rippletec-intro-icon {
   position: absolute;
@@ -315,6 +373,9 @@ a {
   z-index: 1;
   height: 440px;
   background: rgba(210, 209, 209, 0.11); }
+  @media screen and (max-width: 480px) {
+    .rpt-dark-body {
+      display: none; } }
 
 .rpt-panel {
   position: absolute;
@@ -362,6 +423,9 @@ a {
   height: 250px;
   float: left;
   position: relative; }
+  @media screen and (max-width: 480px) {
+    .block-1-4 {
+      display: none; } }
   .block-1-4 span {
     display: block;
     height: 30px;
@@ -433,7 +497,11 @@ a {
 
 /*-----活动------*/
 .rpt-activity {
-  margin-top: 200px; }
+  margin-top: 200px;
+  margin-bottom: 10px; }
+  @media screen and (max-width: 480px) {
+    .rpt-activity {
+      display: none; } }
 
 .pic-br {
   width: 1000px;
@@ -475,6 +543,9 @@ a {
   margin: 20px auto;
   margin-bottom: 100px;
   position: relative; }
+  @media screen and (max-width: 480px) {
+    .rpt-partner {
+      display: none; } }
   .rpt-partner .rpt-partner-left {
     float: left;
     width: 800px;
@@ -485,7 +556,7 @@ a {
       margin: 0;
       padding: 0;
       -webkit-transition: all .2s ease;
-              transition: all .2s ease;
+      transition: all .2s ease;
       visibility: visible;
       opacity: 1; }
     .rpt-partner .rpt-partner-left dl {
@@ -517,6 +588,9 @@ a {
     height: 60px;
     background: #33c5ee;
     z-index: 15; }
+    @media screen and (max-width: 480px) {
+      .rpt-partner .rpt-panel-partner-right {
+        display: none; } }
     .rpt-partner .rpt-panel-partner-right h1 {
       width: 100%;
       letter-spacing: 4px;
@@ -536,6 +610,10 @@ a {
         right: 254px;
         top: 30px; }
 
+@media screen and (max-width: 480px) {
+  .rpt-location {
+    display: none; } }
+
 .rpt-location img {
   width: 1000px;
   height: auto; }
@@ -546,12 +624,13 @@ a {
   margin: 40px auto;
   background: url("../images/rippletec-icon.png") no-repeat;
   background-position: -46px -405px; }
+  @media screen and (max-width: 480px) {
+    .rpt-conchat {
+      display: none; } }
 
 /*------页脚-----*/
 .rpt-footer {
   width: 100%;
-  height: 40px;
-  line-height: 40px;
   margin: 15px 0;
   border-top: 1px solid #ddd;
   font-size: 12px;
@@ -560,17 +639,27 @@ a {
   z-index: 10;
   color: rgba(0, 0, 0, 0.5); }
   .rpt-footer p {
+    line-height: 30px;
     margin: 0;
     padding: 0; }
+  @media screen and (max-width: 480px) {
+    .rpt-footer {
+      margin: 10px 0;
+      padding-top: 10px;
+      bottom: 0;
+      left: 0; } }
 
 /*------背景-----*/
 .bg-canvas {
   width: 100%;
   position: relative; }
+  @media screen and (max-width: 480px) {
+    .bg-canvas {
+      display: none; } }
 
 #bg-canvas {
   width: 100%;
-  height: 2192px;
+  height: 1820px;
   background: #fff;
   position: absolute;
   z-index: 1; }
@@ -601,6 +690,10 @@ a {
 .rpt-news-detail-container {
   position: relative;
   margin-top: 30px; }
+  @media screen and (max-width: 480px) {
+    .rpt-news-detail-container {
+      margin-top: 0px;
+      border-top: 1px solid rgba(0, 0, 0, 0.1); } }
 
 .rpt-news-container-title {
   width: 1000px;
@@ -633,6 +726,7 @@ a {
     margin-top: 20px; }
     .rpt-news-container-title dl dd {
       float: left;
+      -webkit-border-radius: 20px;
       border-radius: 20px;
       font-size: 16px;
       background: #fff;
@@ -640,7 +734,7 @@ a {
       margin: 0px 10px;
       cursor: pointer;
       -webkit-transition: all .1s ease;
-              transition: all .1s ease; }
+      transition: all .1s ease; }
       .rpt-news-container-title dl dd a {
         display: block;
         padding: 5px 25px;
@@ -657,7 +751,9 @@ a {
   font-size: 14px;
   color: #333;
   line-height: 30px;
-  min-height: 300px; }
+  min-height: 300px;
+  -webkit-transition: height 1s ease;
+  transition: height 1s ease; }
   .rpt-news-list .text-center {
     text-align: center;
     font-size: 16px;
@@ -710,6 +806,7 @@ a {
     text-align: center;
     line-height: 24px;
     margin: 3px auto;
+    -webkit-border-radius: 15px;
     border-radius: 15px;
     background: #f2f2f2;
     color: rgba(0, 0, 0, 0.4); }
@@ -736,18 +833,106 @@ a {
   float: float;
   text-align: center;
   background: #FFF;
+  -webkit-border-radius: 15px;
   border-radius: 15px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   cursor: pointer; }
+  @media screen and (max-width: 480px) {
+    .rpt-back-btn {
+      display: none; } }
 
 .rpt-new-detail {
   margin-top: 10px;
   padding: 20px;
+  -webkit-border-radius: 3px;
   border-radius: 3px;
   background-color: #FFF;
   min-height: 300px;
+  background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.1); }
+  @media screen and (max-width: 480px) {
+    .rpt-new-detail {
+      border-width: 0;
+      margin-top: 0;
+      font-size: 12px; } }
+  .rpt-new-detail img {
+    max-width: 100%;
+    height: auto; }
+  .rpt-new-detail h1, .rpt-new-detail h2, .rpt-new-detail h3, .rpt-new-detail h4, .rpt-new-detail h5, .rpt-new-detail h6 {
+    font-weight: bold;
+    margin: 2em 0px 15px 0px; }
   .rpt-new-detail h1 {
+    color: #000;
+    font-size: 2em; }
+  .rpt-new-detail h2 {
+    font-size: 2em; }
+  .rpt-new-detail h3 {
+    font-size: 1.6em; }
+  .rpt-new-detail h4 {
+    font-size: 1.3em; }
+  .rpt-new-detail h5 {
+    font-size: 1em; }
+  .rpt-new-detail h6 {
+    color: #777777;
+    background-color: inherit;
+    font-size: 1em; }
+  .rpt-new-detail hr {
+    height: 0.2em;
+    border: 0;
+    color: #CCCCCC;
+    background-color: #CCCCCC; }
+  .rpt-new-detail blockquote, .rpt-new-detail ul, .rpt-new-detail ol, .rpt-new-detail dl, .rpt-new-detail li, .rpt-new-detail table, .rpt-new-detail pre {
+    margin: 15px 0; }
+  .rpt-new-detail code, .rpt-new-detail pre {
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #F8F8F8;
+    color: inherit; }
+  .rpt-new-detail code {
+    border: 1px solid #EAEAEA;
+    margin: 0 2px;
+    padding: 0 5px; }
+  .rpt-new-detail pre {
+    border: 1px solid #CCCCCC;
+    line-height: 1.25em;
+    overflow: auto;
+    padding: 6px 10px; }
+  .rpt-new-detail pre > code {
+    border: 0;
+    margin: 0;
+    padding: 0; }
+  .rpt-new-detail a, .rpt-new-detail a:visited {
+    color: #4183C4;
+    background-color: inherit;
+    text-decoration: none; }
+  .rpt-new-detail p {
+    font-size: 16px;
+    line-height: 1.5em;
+    margin: 0; }
+  .rpt-new-detail ol {
+    margin: 0; }
+    .rpt-new-detail ol li {
+      display: list-item;
+      list-style: square;
+      margin: 0; }
+  .rpt-new-detail ul {
+    margin: 0; }
+    .rpt-new-detail ul li {
+      display: list-item;
+      list-style: circle;
+      margin: 0; }
+  .rpt-new-detail table {
+    border-spacing: 0px; }
+  .rpt-new-detail th, .rpt-new-detail td {
+    border-right: solid #DDD 1px;
+    border-bottom: solid #DDD 1px;
+    padding: 1em;
+    text-align: left; }
+  .rpt-new-detail tr > td:first-child {
+    border-left: solid #DDD 1px; }
+  .rpt-new-detail tbody > tr:first-child > td {
+    border-top: solid #DDD 1px; }
+  .rpt-new-detail .detail-title {
     width: 100%;
     font-size: 18px;
     margin: 5px 0;
@@ -757,35 +942,32 @@ a {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; }
-  .rpt-new-detail p {
+  .rpt-new-detail .detail-tag {
     width: 100%;
     margin-top: 5px;
     height: 30px;
     line-height: 30px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
-    .rpt-new-detail p span, .rpt-new-detail p i {
+    .rpt-new-detail .detail-tag span, .rpt-new-detail .detail-tag i {
       float: left; }
-    .rpt-new-detail p span {
+    .rpt-new-detail .detail-tag span {
       width: 50px;
       text-align: center;
       line-height: 24px;
       margin: 3px auto;
+      -webkit-border-radius: 15px;
       border-radius: 15px;
       background: #f2f2f2;
       color: rgba(0, 0, 0, 0.4); }
-    .rpt-new-detail p i {
+    .rpt-new-detail .detail-tag i {
       margin-left: 20px;
       color: rgba(0, 0, 0, 0.5); }
 
-p {
-  width: 100%;
-  height: 30px;
-  margin: 20px auto; }
-
 .rpt-nems-pagenation {
   height: 30px;
-  padding: 0;
+  padding: 10px 0;
   float: right; }
   .rpt-nems-pagenation .actived {
     background: #70de2d;
@@ -799,6 +981,7 @@ p {
     line-height: 24px;
     width: 50px;
     font-size: 16px;
+    -webkit-border-radius: 12px;
     border-radius: 12px;
     color: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -810,7 +993,7 @@ p {
   min-height: 300px; }
   .rpt-new-detail-container h1, .rpt-new-detail-container p, .rpt-new-detail-container div {
     -webkit-transition: all .2s ease;
-            transition: all .2s ease;
+    transition: all .2s ease;
     visibility: visible;
     opacity: 1; }
 

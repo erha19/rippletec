@@ -3,16 +3,37 @@
 	height:240px;
 	width:100%;
 	margin:50px auto;
+	@media screen and (max-width: 480px){
+		margin:10px 0;
+		overflow: hidden;
+		height: auto;
+	}
 }
+.clearfix:after{ 
+	visibility:hidden; 
+	display:block; 
+	font-size:0; 
+	content:" "; 
+	clear:both; 
+	height:0; 
+} 
+.clearfix { display: block; } 
 .rpt-news-left,.rpt-news-right{
 	width:485px;
 	height:240px;
 	float:left;
+	@media screen and (max-width: 480px){
+		width:100%;
+		height: 280px;
+	}
 }
 .rpt-news-left{
 	margin-right:15px;
 	border:1px solid rgba(0,0,0,.1);
 	position:relative;
+	@media screen and (max-width: 480px){
+		display: none;
+	}
 	.rpt-news-pic{
 		position:absolute;
 		width:485px;
@@ -51,12 +72,19 @@
 	.rpt-news-summary{
 		width: 100%;
 		height: 200px;
+		@media screen and (max-width: 480px){
+			width:100%;
+			height: 280px;
+		}
 	}
 	.rpt-news-title{
 		width: 100%;
 		height: 30px;
 		border-bottom:1px solid #ddd;
 		margin-left: 15px;
+		@media screen and (max-width: 480px){
+			display: none;
+		}
 		a{
 			float: right;
 			font-size: 14px;
@@ -118,6 +146,11 @@
 			padding:10px 0;
 			padding-left: 15px;
 			cursor: pointer;
+			@media screen and (max-width: 480px){
+				font-size:16px;
+				max-height:30px;
+				line-height:30px;
+			}
 		}
 		.text-container{
 			transition:height .3s ease;
@@ -146,6 +179,9 @@
 	height:300px;
 	background:url('../images/rippletec-intro.jpg') no-repeat center center;
 	background-size:cover;
+	@media screen and (max-width: 480px){
+		display: none;
+	}
 }
 .rippletec-intro-icon{
 	position:absolute;
@@ -164,6 +200,9 @@
 	z-index:1;
 	height:440px;
 	background:rgba(210, 209, 209, 0.11);
+	@media screen and (max-width: 480px){
+		display: none;
+	}
 }
 .rpt-panel{
 	position:absolute;
@@ -215,6 +254,9 @@
 	height:250px;
 	float:left;
 	position:relative;
+	@media screen and (max-width: 480px){
+		display: none;
+	}
 	span{
 		display: block;
 		height: 30px;
@@ -292,6 +334,10 @@
 /*-----活动------*/
 .rpt-activity{
 	margin-top:200px;
+	margin-bottom:10px;
+	@media screen and (max-width: 480px){
+		display: none;
+	}
 }
 .pic-br{
 	width:1000px;
@@ -334,6 +380,9 @@
 	margin:20px auto;
 	margin-bottom:100px;
 	position:relative;
+	@media screen and (max-width: 480px){
+		display: none;
+	}
 	.rpt-partner-left{
 		float: left;
 		width: 800px;
@@ -382,6 +431,9 @@
 		height: 60px;
 		background:#33c5ee;
 		z-index: 15;
+		@media screen and (max-width: 480px){
+			display: none;
+		}
 		h1{
 			width: 100%;
 			letter-spacing:4px;
@@ -405,6 +457,9 @@
 	}
 }
 .rpt-location{
+	@media screen and (max-width: 480px){
+		display: none;
+	}
 	img{
 		width: 1000px;
 		height: auto;
@@ -416,12 +471,13 @@
 	margin:40px auto;
 	background:url('../images/rippletec-icon.png') no-repeat;
 	background-position:-46px -405px;
+	@media screen and (max-width: 480px){
+		display: none;
+	}
 }
 /*------页脚-----*/
 .rpt-footer{
 	width:100%;
-	height:40px;
-	line-height:40px;
 	margin:15px 0;
 	border-top:1px solid #ddd;
 	font-size:12px;
@@ -430,18 +486,29 @@
 	z-index:10;
 	color:rgba(0,0,0,.5);
 	p{
+		line-height:30px;
 		margin:0;
 		padding:0;
+	}
+	@media screen and (max-width: 480px){
+		margin:10px 0;
+		padding-top:10px;
+		bottom:0;
+		left: 0;
+
 	}
 }
 /*------背景-----*/
 .bg-canvas{
 	width:100%;
 	position:relative;
+	@media screen and (max-width: 480px){
+		display: none;
+	}
 }
 #bg-canvas {
   width: 100%;
-  height: 2192px;
+  height: 1820px;
   background: #fff;
   position: absolute;
   z-index: 1;
@@ -469,9 +536,14 @@
 	margin-top:100px;
 	margin-bottom:30px;
 }
+
 .rpt-news-detail-container{
 	position:relative;
 	margin-top:30px;
+	@media screen and (max-width: 480px){
+		margin-top:0px;
+		border-top:1px solid rgba(0,0,0,.1);
+	}
 }
 .rpt-news-container-title{
 	width:1000px;
@@ -536,6 +608,7 @@
 	color:#333;
 	line-height:30px;
 	min-height: 300px;
+	transition:height 1s ease;
 	.text-center{
 		text-align: center;
 		font-size: 16px;
@@ -658,6 +731,9 @@
 	border-radius:15px;
 	border:1px solid rgba(0,0,0,.1);
 	cursor:pointer;
+	@media screen and (max-width: 480px){
+		display: none;
+	}
 }
 .rpt-new-detail{
 	margin-top:10px;
@@ -665,8 +741,130 @@
 	border-radius:3px;
 	background-color:#FFF;
 	min-height:300px;
+	background-color:#fff;
 	border:1px solid rgba(0,0,0,.1);
-	h1{
+	@media screen and (max-width: 480px){
+		border-width:0;
+		margin-top: 0;
+		font-size: 12px;
+	}
+	img{
+		max-width: 100%;
+		height: auto;
+	}
+	h1, h2, h3, h4, h5, h6 {
+	    font-weight: bold;
+	    margin: 2em 0px 15px 0px;
+	}
+
+	h1 {
+	    color: #000;
+	    font-size: 2em;
+	}
+
+	h2 {
+	    font-size: 2em;
+	}
+
+	h3 {
+	    font-size: 1.6em;
+	}
+
+	h4 {
+	    font-size: 1.3em;
+	}
+
+	h5 {
+	    font-size: 1em;
+	}
+
+	h6 {
+	    color: #777777;
+	    background-color: inherit;
+	    font-size: 1em;
+	}
+
+	hr {
+	    height: 0.2em;
+	    border: 0;
+	    color: #CCCCCC;
+	    background-color: #CCCCCC;
+	}
+
+	blockquote, ul, ol, dl, li, table, pre {
+	    margin: 15px 0;
+	}
+
+	code, pre {
+	    border-radius: 3px;
+	    background-color: #F8F8F8;
+	    color: inherit;
+	}
+
+	code {
+	    border: 1px solid #EAEAEA;
+	    margin: 0 2px;
+	    padding: 0 5px;
+	}
+
+	pre {
+	    border: 1px solid #CCCCCC;
+	    line-height: 1.25em;
+	    overflow: auto;
+	    padding: 6px 10px;
+	}
+
+	pre > code {
+	    border: 0;
+	    margin: 0;
+	    padding: 0;
+	}
+
+	a, a:visited {
+	    color: #4183C4;
+	    background-color: inherit;
+	    text-decoration: none;
+	}
+
+	p{   
+	    font-size:16px;
+	    line-height:1.5em; 
+	    margin:0;
+	}
+	ol{
+		margin:0;
+		li{
+		  display: list-item;
+		  list-style:square;
+		  margin:0;
+		}
+	}
+	ul{
+		margin:0;
+		li{
+		  display: list-item;
+		  list-style:circle;
+		  margin:0;
+		}
+	}
+	table {
+	  border-spacing:0px;
+	}
+
+
+	th,td {
+	  border-right: solid #DDD 1px;
+	  border-bottom: solid #DDD 1px;
+	  padding: 1em;
+	  text-align: left;
+	}
+	tr>td:first-child{
+	  border-left: solid #DDD 1px;
+	}
+	tbody>tr:first-child>td{
+	  border-top: solid #DDD 1px;
+	}
+	.detail-title{
 		width: 100%;
 		font-size: 18px;
 		margin:5px 0;
@@ -674,12 +872,13 @@
 		text-indent: 5px;
 		display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 	}
-	p{
+	.detail-tag{
 		width: 100%;
 		margin-top: 5px;
 		height: 30px;
 		line-height: 30px;
-		padding-bottom:20px;
+		padding-bottom:10px;
+		margin-bottom:10px;
 
 		border-bottom:1px solid rgba(0,0,0,.1);
 		span,i{
@@ -701,14 +900,10 @@
 	}
 
 }
-p{
-	width:100%;
-	height:30px;
-	margin:20px auto;
-}
+  
 .rpt-nems-pagenation{
 	height:30px;
-	padding:0;
+	padding:10px 0;
 	float:right;
 	.actived{
 		background:#70de2d;
